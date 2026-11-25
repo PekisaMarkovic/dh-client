@@ -7,10 +7,12 @@ type Props = {
   name: string;
   // true: above the fold, loaded right away (the first cards of a page)
   priority?: boolean;
+  // how wide the card is on each screen, so the browser loads an image that is sharp but not bigger than needed
+  sizes?: string;
 };
 
 // the image of a drink in a card (square, the whole bottle is visible), a bottle icon while the drink has none
-const DrinkImage = ({ image, name, priority }: Props) => (
+const DrinkImage = ({ image, name, priority, sizes = "(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw" }: Props) => (
   <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-stone-50">
     {image ? (
       <Image
@@ -18,7 +20,7 @@ const DrinkImage = ({ image, name, priority }: Props) => (
         alt={image.altText || name}
         width={image.width}
         height={image.height}
-        sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+        sizes={sizes}
         priority={priority}
         className="h-full w-full object-contain p-3"
       />

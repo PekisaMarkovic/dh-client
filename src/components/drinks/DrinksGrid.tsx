@@ -3,15 +3,19 @@ import { IDrink } from "@/interfaces";
 
 type Props = {
   drinks: IDrink[];
+  // the columns of the grid, the menu page uses the default
+  columns?: string;
+  // the width of a card on each screen, it has to match the columns (see DrinkImage)
+  sizes?: string;
 };
 
 // the first row is above the fold, its images are loaded right away
 const PRIORITY_COUNT = 4;
 
-const DrinksGrid = ({ drinks }: Props) => (
-  <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+const DrinksGrid = ({ drinks, columns = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5", sizes }: Props) => (
+  <ul className={`grid gap-4 ${columns}`}>
     {drinks.map((drink, index) => (
-      <DrinkCard key={drink.drinkId} drink={drink} priority={index < PRIORITY_COUNT} />
+      <DrinkCard key={drink.drinkId} drink={drink} priority={index < PRIORITY_COUNT} sizes={sizes} />
     ))}
   </ul>
 );
