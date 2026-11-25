@@ -8,7 +8,6 @@ import MainButton from "@/components/core/buttons/MainButton";
 import InputText from "@/components/core/input/InputText";
 import InputTextarea from "@/components/core/input/InputTextarea";
 import Modal from "@/components/core/modal/Modal";
-import customToast from "@/components/core/toast/CustomToast";
 import Heading from "@/components/core/typography/Heading";
 import SectionTitle from "@/components/core/typography/SectionTitle";
 import Paragraph from "@/components/core/typography/Paragraph";
@@ -27,7 +26,6 @@ const ContactForm = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: sendContact,
     onSuccess: () => {
-      customToast.success(t("contact:sent"));
       setIsSentOpen(true);
       methods.reset(EMPTY);
     },
