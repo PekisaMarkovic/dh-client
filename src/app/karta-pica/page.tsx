@@ -8,6 +8,7 @@ import Pagination from "@/components/core/pagination/Pagination";
 import Heading from "@/components/core/typography/Heading";
 import Paragraph from "@/components/core/typography/Paragraph";
 import DrinksGrid from "@/components/drinks/DrinksGrid";
+import DrinksGridSkeleton from "@/components/drinks/DrinksGridSkeleton";
 import { menuJsonLd, jsonLdString, menuSeo, pageMetadata } from "@/lib/seo";
 import { DRINKS_PAGE_SIZE, DRINKS_PAGE_SIZES, getDrinks } from "@/services/drink-service";
 import { getSiteOrFallback } from "@/services/site-service";
@@ -55,11 +56,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
 }
 
 // the drinks of one page, it is the only part that waits for the api
-async function DrinksPage({ searchParams }: { searchParams: SearchParams }) {
-  const params = await searchParams;
-  const page = parsePage(params.page);
-  const perPage = parsePerPage(params.perPage);
-
+async function DrinksPage({ page, perPage }: { page: number; perPage: number }) {
   const result = await getDrinks(page, perPage);
 
   // the real reason (no connection, timeout, the answer of the api) instead of a general text
@@ -83,10 +80,26 @@ async function DrinksPage({ searchParams }: { searchParams: SearchParams }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(menuJsonLd(site, drinks.items, (page - 1) * drinks.meta.itemsPerPage + 1)) }} />
-      {/* a new size starts again on the first page */}
-      <PageSize label={t("drinks:perPage")} value={perPage} options={DRINKS_PAGE_SIZES} buildHref={(size) => hrefOf(1, size)} />
       <DrinksGrid drinks={drinks.items} />
       <Pagination page={page} totalPages={totalPages} buildHref={(p) => hrefOf(p, perPage)} />
+    </>
+  );
+}
+
+// reads the address; the page sizes stay on the screen while the drinks of a new page load
+async function DrinksMenu({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const page = parsePage(params.page);
+  const perPage = parsePerPage(params.perPage);
+
+  return (
+    <>
+      {/* a new size starts again on the first page */}
+      <PageSize label={t("drinks:perPage")} value={perPage} options={DRINKS_PAGE_SIZES} buildHref={(size) => hrefOf(1, size)} />
+      {/* a new key on every page and size: the skeleton shows while the next page loads, not the old drinks */}
+      <Suspense key={`${page}-${perPage}`} fallback={<DrinksGridSkeleton count={perPage} />}>
+        <DrinksPage page={page} perPage={perPage} />
+      </Suspense>
     </>
   );
 }
@@ -98,8 +111,8 @@ export default function DrinksMenuPage({ searchParams }: { searchParams: SearchP
         <Heading as="h1" size="4xl" text={t("drinks:title")} />
         <Paragraph text={t("drinks:subtitle")} />
       </header>
-      <Suspense fallback={<Paragraph text="..." />}>
-        <DrinksPage searchParams={searchParams} />
+      <Suspense fallback={<DrinksGridSkeleton count={DRINKS_PAGE_SIZE} withToolbar />}>
+        <DrinksMenu searchParams={searchParams} />
       </Suspense>
     </div>
   );

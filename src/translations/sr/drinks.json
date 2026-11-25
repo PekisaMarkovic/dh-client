@@ -7,5 +7,6 @@
   "empty": "Trenutno nema pića na karti.",
   "loadError": "Karta pića trenutno nije dostupna.",
   "retry": "Pokušajte ponovo malo kasnije.",
-  "perPage": "Pića po strani"
+  "perPage": "Pića po strani",
+  "loading": "Učitavanje pića…"
 }

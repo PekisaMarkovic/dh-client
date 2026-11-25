@@ -7,5 +7,6 @@
   "empty": "There are no drinks on the menu right now.",
   "loadError": "The drinks menu is not available right now.",
   "retry": "Please try again a bit later.",
-  "perPage": "Drinks per page"
+  "perPage": "Drinks per page",
+  "loading": "Loading the drinks…"
 }
