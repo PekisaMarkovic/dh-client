@@ -1,0 +1,10 @@
+{
+  "input": "Morate uneti {{field}}",
+  "custom": "{{field}}",
+  "fields": {
+    "name": "ime i prezime",
+    "phone": "ispravan broj telefona (cifre, +, -, razmaci, zagrade)",
+    "email": "ispravnu e-poštu",
+    "message": "tekst (najviše 2000 karaktera)"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Send us a message",
+  "name": "Full name",
+  "phone": "Phone",
+  "email": "Email",
+  "message": "Message (tell us what you need)",
+  "messagePlh": "Write us a message...",
+  "sent": "Thank you! We will get back to you soon.",
+  "sentTitle": "Message sent",
+  "invalid": "Check the entered data."
+}

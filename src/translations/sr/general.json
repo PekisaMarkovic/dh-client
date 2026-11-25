@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "menu": "Karta pića",
+    "offer": "Ponuda",
+    "contact": "Kontakt",
+    "directions": "Navigacija",
+    "main": "Glavna navigacija",
+    "home": "Početna"
+  },
+  "button": {
+    "submit": "Pošalji",
+    "close": "Zatvori",
+    "callUs": "Pozovi {{phone}}",
+    "instagram": "Instagram"
+  },
+  "errorMessage": "Nešto je pošlo naopako. Pokušajte ponovo kasnije.",
+  "errors": {
+    "network": "Server nije dostupan. Proverite internet vezu i pokušajte ponovo.",
+    "timeout": "Server predugo odgovara. Pokušajte ponovo.",
+    "tooLarge": "Fajl je prevelik.",
+    "status": "Zahtev nije uspeo (greška {{status}}). Pokušajte ponovo kasnije."
+  },
+  "pagination": {
+    "label": "Strane",
+    "previous": "Prethodna strana",
+    "next": "Sledeća strana",
+    "page": "Strana {{page}}"
+  },
+  "footer": {
+    "address": "Adresa",
+    "contact": "Kontakt",
+    "hours": "Radno vreme"
+  },
+  "notFound": {
+    "title": "Stranica nije pronađena",
+    "text": "Stranica koju tražite ne postoji.",
+    "back": "Nazad na početnu"
+  },
+  "maintenance": {
+    "title": "Sajt je u izradi"
+  }
+}

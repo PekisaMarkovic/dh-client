@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "menu": "Drinks menu",
+    "offer": "Offer",
+    "contact": "Contact",
+    "directions": "Directions",
+    "main": "Main navigation",
+    "home": "Home"
+  },
+  "button": {
+    "submit": "Send",
+    "close": "Close",
+    "callUs": "Call {{phone}}",
+    "instagram": "Instagram"
+  },
+  "errorMessage": "Something went wrong. Please try again later.",
+  "errors": {
+    "network": "Can not reach the server. Check your internet connection and try again.",
+    "timeout": "The server took too long to answer. Please try again.",
+    "tooLarge": "The file is too large.",
+    "status": "The request failed (error {{status}}). Please try again later."
+  },
+  "pagination": {
+    "label": "Pages",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {{page}}"
+  },
+  "footer": {
+    "address": "Address",
+    "contact": "Contact",
+    "hours": "Opening hours"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist.",
+    "back": "Back to the home page"
+  },
+  "maintenance": {
+    "title": "Coming soon"
+  }
+}

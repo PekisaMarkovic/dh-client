@@ -1,0 +1,10 @@
+{
+  "title": "Karta pića",
+  "subtitle": "Sva naša pića sa cenama, 10 po strani.",
+  "price": "{{price}} RSD",
+  "inStock": "Na stanju",
+  "outOfStock": "Nema na stanju",
+  "empty": "Trenutno nema pića na karti.",
+  "loadError": "Karta pića trenutno nije dostupna.",
+  "retry": "Pokušajte ponovo malo kasnije."
+}

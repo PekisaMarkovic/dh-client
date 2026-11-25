@@ -1,0 +1,10 @@
+{
+  "title": "Drinks menu",
+  "subtitle": "All our drinks with prices, 10 per page.",
+  "price": "{{price}} RSD",
+  "inStock": "In stock",
+  "outOfStock": "Out of stock",
+  "empty": "There are no drinks on the menu right now.",
+  "loadError": "The drinks menu is not available right now.",
+  "retry": "Please try again a bit later."
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Pošaljite nam poruku",
+  "name": "Ime i prezime",
+  "phone": "Telefon",
+  "email": "Email",
+  "message": "Poruka (navedite šta vam treba)",
+  "messagePlh": "Napišite nam poruku...",
+  "sent": "Hvala! Javićemo vam se uskoro.",
+  "sentTitle": "Poruka je poslata",
+  "invalid": "Proverite unete podatke."
+}

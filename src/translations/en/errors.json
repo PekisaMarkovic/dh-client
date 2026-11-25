@@ -1,0 +1,10 @@
+{
+  "input": "Enter {{field}}",
+  "custom": "{{field}}",
+  "fields": {
+    "name": "your full name",
+    "phone": "a valid phone number (digits, +, -, spaces, brackets)",
+    "email": "a valid email",
+    "message": "a text (at most 2000 characters)"
+  }
+}
