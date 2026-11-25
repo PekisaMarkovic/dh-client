@@ -11,9 +11,13 @@ const Header = ({ site }: { site: ISite }) => (
     <div className="mx-auto grid max-w-6xl items-center gap-x-6 gap-y-3 px-4 py-4 md:grid-cols-3">
       <div className="order-2 flex justify-center md:order-none md:justify-start">
         {fullAddress(site) && (
-          <a href={mapsUrl(site)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-semibold text-brand hover:text-amber-300">
-            <PinIcon />
-            <span>{fullAddress(site)}</span>
+          <a href={mapsUrl(site)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 font-semibold text-brand hover:text-amber-300">
+            <PinIcon className="h-8 w-8 shrink-0" />
+            {/* the street on the first line, the city under it */}
+            <span className="flex flex-col text-left leading-tight">
+              {site.address && <span className="text-lg sm:text-xl">{site.address}</span>}
+              {site.city && <span className="text-base sm:text-lg">{site.city}</span>}
+            </span>
           </a>
         )}
       </div>
@@ -33,8 +37,8 @@ const Header = ({ site }: { site: ISite }) => (
 
       <div className="order-3 flex justify-center md:order-none md:justify-end">
         {site.phone && (
-          <a href={phoneHref(site.phone)} className="flex items-center gap-2 text-lg font-bold text-brand hover:text-amber-300">
-            <PhoneIcon />
+          <a href={phoneHref(site.phone)} className="flex items-center gap-3 text-xl font-bold text-brand hover:text-amber-300 sm:text-2xl">
+            <PhoneIcon className="h-8 w-8 shrink-0" />
             <span>{site.phone}</span>
           </a>
         )}
