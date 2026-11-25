@@ -4,7 +4,9 @@ import { IDrink, Paginated } from "@/interfaces";
 import { getApi } from "@/lib/api";
 import { getApiErrorMessage } from "@/lib/api-error";
 
-export const DRINKS_PAGE_SIZE = 10;
+export const DRINKS_PAGE_SIZE = 20;
+/** the page sizes a visitor can pick on the menu (the api allows at most 100) */
+export const DRINKS_PAGE_SIZES = [10, 20, 30, 40, 50] as const;
 
 // a page of drinks, or why it could not be loaded (the real reason: no connection, timeout, the answer of the api)
 export type DrinksResult = { drinks: Paginated<IDrink> } | { error: string };
