@@ -46,16 +46,44 @@
   }
 }
 
-/* iOS Safari draws a date field by its own rules: it is wider than width: 100% (the form then scrolls sideways)
-   and its text sticks to the top. Without its own look it is as wide and as high as the other fields */
-input[type="date"] {
-  -webkit-appearance: none;
-  appearance: none;
-  min-width: 0;
+/* the calendar of a day field (react-day-picker): amber on the dark site */
+.rdp-dh {
+  --rdp-accent-color: #f59e0b;
+  --rdp-accent-background-color: rgb(245 158 11 / 0.15);
+  --rdp-today-color: #f59e0b;
+  /* 7 days fill the width of the box around the calendar, at most 40px each */
+  --rdp-day-width: min(40px, calc(100cqi / 7));
+  --rdp-day-height: var(--rdp-day-width);
+  --rdp-day_button-width: calc(var(--rdp-day-width) - 2px);
+  --rdp-day_button-height: var(--rdp-day_button-width);
+  --rdp-disabled-opacity: 0.3;
+  --rdp-nav-height: 2.5rem;
+  color: var(--foreground);
 }
 
-input[type="date"]::-webkit-date-and-time-value {
-  text-align: left;
+.rdp-dh .rdp-caption_label {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.rdp-dh .rdp-weekday {
+  color: #a8a29e;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.rdp-dh .rdp-chevron {
+  fill: #f59e0b;
+}
+
+.rdp-dh .rdp-day_button:hover:not([disabled]) {
+  background: rgb(245 158 11 / 0.15);
+}
+
+.rdp-dh .rdp-selected .rdp-day_button {
+  background: #f59e0b;
+  color: #1c1917;
+  font-weight: 700;
 }
 
 /* a jump to an anchor (#contact) stops a little under the header */

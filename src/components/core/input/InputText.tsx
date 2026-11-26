@@ -8,18 +8,15 @@ import Label from "@/components/core/typography/Label";
 type Props = {
   name: string;
   label: string;
-  type?: "text" | "email" | "tel" | "date" | "password";
+  type?: "text" | "email" | "tel" | "password";
   placeholder?: string;
   autoComplete?: string;
   isRequired?: boolean;
   disabled?: boolean;
-  // the first and the last day a date field can have ("2026-11-27")
-  min?: string;
-  max?: string;
 };
 
 // has to be inside a react-hook-form <FormProvider>, the error text comes from the validation (the `er` translations)
-const InputText = ({ name, label, type = "text", placeholder, autoComplete, isRequired, disabled, min, max }: Props) => {
+const InputText = ({ name, label, type = "text", placeholder, autoComplete, isRequired, disabled }: Props) => {
   const {
     register,
     formState: { errors },
@@ -35,8 +32,6 @@ const InputText = ({ name, label, type = "text", placeholder, autoComplete, isRe
         placeholder={placeholder}
         autoComplete={autoComplete}
         disabled={disabled}
-        min={min}
-        max={max}
         aria-invalid={!!error}
         className={`${inputStyle({ error: !!error, disabled })} h-11`}
         {...register(name)}

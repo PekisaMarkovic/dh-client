@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import MainButton from "@/components/core/buttons/MainButton";
+import DatePickerField from "@/components/core/input/DatePickerField";
 import InputText from "@/components/core/input/InputText";
 import Paragraph from "@/components/core/typography/Paragraph";
 import { useCart } from "@/hooks/use-cart";
@@ -51,7 +52,7 @@ const OrderDetailsStep = ({ onBack, onSent }: Props) => {
         <InputText isRequired name="email" type="email" label={t("cart:email")} autoComplete="email" />
         <InputText isRequired name="phone" type="tel" label={t("cart:phone")} autoComplete="tel" />
         <InputText isRequired name="address" label={t("cart:address")} placeholder={t("cart:addressPlh")} autoComplete="street-address" />
-        <InputText isRequired name="pickupDate" type="date" label={t("cart:pickupDate")} min={first} max={last} />
+        <DatePickerField isRequired name="pickupDate" label={t("cart:pickupDate")} min={first} max={last} />
         <Paragraph text={t("cart:pickupHint")} size="sm" />
 
         <div className="mt-auto flex gap-3 pt-4">
