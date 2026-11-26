@@ -5,6 +5,9 @@
     "name": "your full name",
     "phone": "a valid phone number (digits, +, -, spaces, brackets)",
     "email": "a valid email",
-    "message": "a text (at most 2000 characters)"
+    "message": "a text (at most 2000 characters)",
+    "fullName": "the full name (at least 2 letters)",
+    "pickupDate": "the delivery day: from today (after 15:00 from tomorrow) up to a month ahead",
+    "address": "the delivery address (street and number, town)"
   }
 }

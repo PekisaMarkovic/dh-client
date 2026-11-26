@@ -1,0 +1,33 @@
+{
+  "title": "Korpa",
+  "close": "Zatvori korpu",
+  "open": "Otvori korpu ({{count}})",
+  "add": "Dodaj {{name}} u korpu",
+  "addShort": "Dodaj u korpu",
+  "remove": "Ukloni {{name}} iz korpe",
+  "less": "Manje: {{name}}",
+  "more": "Više: {{name}}",
+  "quantity": "Količina: {{name}}",
+  "price": "{{price}} RSD",
+  "total": "Ukupno",
+  "next": "Nastavi",
+  "back": "Nazad",
+  "send": "Pošalji porudžbinu",
+  "empty": "Korpa je prazna. Dodajte pića sa karte pića.",
+  "continueShopping": "Nastavi kupovinu",
+  "steps": {
+    "cart": "Korpa",
+    "details": "Vaši podaci"
+  },
+  "fullName": "Ime i prezime",
+  "email": "Email",
+  "phone": "Telefon",
+  "pickupDate": "Dan dostave",
+  "pickupHint": "Porudžbine primljene do 15h naš kurir dostavlja isti dan, kasnije primljene od sledećeg dana. Dan dostave možete izabrati najviše mesec dana unapred.",
+  "sentTitle": "Porudžbina #{{number}} je poslata",
+  "sent": "Hvala! Poslali smo vam mejl sa porudžbinom. Javićemo vam se da je potvrdimo, a naš kurir će je doneti na vašu adresu.",
+  "invalid": "Proverite podatke porudžbine.",
+  "delivery": "Dostava",
+  "address": "Adresa za dostavu",
+  "addressPlh": "Ulica i broj, mesto"
+}

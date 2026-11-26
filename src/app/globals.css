@@ -16,11 +16,40 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
+
+  /* the van of the cart in the header: it bounces as if it drives, the speed lines fly behind it */
+  --animate-van: van-drive 0.5s ease-in-out infinite;
+  --animate-speed-line: speed-line 0.6s linear infinite;
+
+  @keyframes van-drive {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-1.5px) rotate(-2deg);
+    }
+  }
+
+  @keyframes speed-line {
+    from {
+      transform: translateX(10px);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-14px);
+      opacity: 0;
+    }
+  }
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 1rem;
+  /* the header stays at the top (StickyHeader sets its height), a jump to #contact stops under it */
+  scroll-padding-top: calc(var(--header-height, 0px) + 1rem);
   background: var(--background);
 }
 

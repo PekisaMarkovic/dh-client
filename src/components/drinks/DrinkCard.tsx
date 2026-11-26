@@ -1,5 +1,5 @@
+import AddToCartButton from "@/components/cart/AddToCartButton";
 import DrinkImage from "@/components/drinks/DrinkImage";
-import CartIcon from "@/icons/CartIcon";
 import { IDrink } from "@/interfaces";
 import { t } from "@/translations/translate";
 import { formatPrice } from "@/utils/money";
@@ -8,28 +8,15 @@ type Props = {
   drink: IDrink;
   priority?: boolean;
   sizes?: string;
-  // the site lets the visitors order: the cart is shown
-  canOrder?: boolean;
 };
 
-// one drink of the menu, a list item (<li>)
-// shortcut: the cart only shows the way, it does nothing yet; make it a button when ordering is built
-const DrinkCard = ({ drink, priority, sizes, canOrder }: Props) => (
+// one drink of the menu, a list item (<li>); the cart buttons show only when the site lets the visitors order
+const DrinkCard = ({ drink, priority, sizes }: Props) => (
   <li className="group flex flex-col overflow-hidden rounded-2xl border border-stone-800 bg-surface transition hover:border-brand/60">
     <div className="relative">
       <DrinkImage image={drink.image} name={drink.name} priority={priority} sizes={sizes} />
-      {canOrder && (
-        // on hover the cart comes over the image and asks for a click
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 bg-brand-dark/60 opacity-0 transition duration-200 group-hover:opacity-100"
-        >
-          <span className="flex h-14 w-14 scale-75 items-center justify-center rounded-full bg-brand text-brand-dark shadow-lg transition duration-200 group-hover:scale-100 motion-reduce:scale-100">
-            <CartIcon className="h-7 w-7" />
-          </span>
-          <span className="text-sm font-semibold text-white">{t("drinks:addToCart")}</span>
-        </div>
-      )}
+      {/* on hover the cart comes over the image and asks for a click */}
+      <AddToCartButton drink={drink} variant="overlay" />
     </div>
     <div className="flex flex-1 flex-col gap-1 p-4">
       <h3 className="font-semibold leading-snug">{drink.name}</h3>
@@ -40,15 +27,8 @@ const DrinkCard = ({ drink, priority, sizes, canOrder }: Props) => (
             {drink.inStock ? t("drinks:inStock") : t("drinks:outOfStock")}
           </p>
         </div>
-        {canOrder && (
-          // always visible, also on a phone that has no hover
-          <span
-            aria-hidden="true"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand text-brand transition group-hover:bg-brand group-hover:text-brand-dark"
-          >
-            <CartIcon className="h-5 w-5" />
-          </span>
-        )}
+        {/* always visible, also on a phone that has no hover */}
+        <AddToCartButton drink={drink} variant="corner" />
       </div>
     </div>
   </li>

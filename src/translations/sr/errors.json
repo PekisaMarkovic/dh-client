@@ -5,6 +5,9 @@
     "name": "ime i prezime",
     "phone": "ispravan broj telefona (cifre, +, -, razmaci, zagrade)",
     "email": "ispravnu e-poštu",
-    "message": "tekst (najviše 2000 karaktera)"
+    "message": "tekst (najviše 2000 karaktera)",
+    "fullName": "ime i prezime (najmanje 2 slova)",
+    "pickupDate": "dan dostave: od danas (posle 15h od sutra) do mesec dana unapred",
+    "address": "adresu za dostavu (ulica i broj, mesto)"
   }
 }

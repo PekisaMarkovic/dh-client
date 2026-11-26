@@ -55,7 +55,7 @@ const DrinksResults = async ({ state }: Props) => {
         <p className="text-sm text-stone-400">{count}</p>
       </div>
 
-      <DrinksGrid drinks={items} canOrder={site.isOrderingAllowed} />
+      <DrinksGrid drinks={items} />
       <Pagination page={state.page} totalPages={totalPages} buildHref={(page) => menuHrefOf({ ...state, page })} />
     </>
   );

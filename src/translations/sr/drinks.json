@@ -20,6 +20,5 @@
   "resultsFor_few": "{{count}} pića za „{{search}}“",
   "resultsFor_other": "{{count}} pića za „{{search}}“",
   "noResults": "Nema pića za „{{search}}“.",
-  "clearSearch": "Obriši pretragu",
-  "addToCart": "Dodaj u korpu"
+  "clearSearch": "Obriši pretragu"
 }

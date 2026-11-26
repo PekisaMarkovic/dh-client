@@ -25,7 +25,7 @@ const DrinksMenu = async ({ searchParams, slugParam }: Props) => {
 
   return (
     <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start lg:gap-10">
-      <aside className="lg:sticky lg:top-24">
+      <aside className="lg:sticky lg:top-[calc(var(--header-height,0px)+1.5rem)]">
         <CategoryFilter
           label={t("drinks:categories")}
           allLabel={t("drinks:allCategories")}

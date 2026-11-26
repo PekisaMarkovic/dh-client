@@ -1,14 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import DeliveryButton from "@/components/cart/DeliveryButton";
+import StickyHeader from "@/components/layout/StickyHeader";
 import PhoneIcon from "@/icons/PhoneIcon";
 import PinIcon from "@/icons/PinIcon";
 import { ISite } from "@/interfaces";
 import { fullAddress, mapsUrl, phoneHref } from "@/lib/site";
 import { t } from "@/translations/translate";
 
-// the address on the left, the logo (or the name) in the middle, the phone on the right
+// the address on the left, the logo (or the name) in the middle, the phone and the cart on the right; it stays at the top
 const Header = ({ site }: { site: ISite }) => (
-  <header className="border-b border-white/10 bg-brand-dark">
+  <StickyHeader>
     <div className="mx-auto grid max-w-6xl items-center gap-x-6 gap-y-3 px-4 py-4 md:grid-cols-3">
       <div className="order-2 flex justify-center md:order-none md:justify-start">
         {fullAddress(site) && (
@@ -48,16 +50,18 @@ const Header = ({ site }: { site: ISite }) => (
         </Link>
       </div>
 
-      <div className="order-3 flex justify-center md:order-none md:justify-end">
+      {/* the phone and, when the site lets the visitors order, the cart (the van) */}
+      <div className="order-3 flex flex-wrap items-center justify-center gap-4 md:order-none md:justify-end">
         {site.phone && (
           <a href={phoneHref(site.phone)} className="flex items-center gap-3 text-xl font-bold text-brand hover:text-amber-300 sm:text-2xl">
             <PhoneIcon className="h-8 w-8 shrink-0" />
             <span>{site.phone}</span>
           </a>
         )}
+        <DeliveryButton />
       </div>
     </div>
-  </header>
+  </StickyHeader>
 );
 
 export default Header;

@@ -34,7 +34,6 @@ const DrinksTeaser = ({ site }: { site: ISite }) => {
           drinks={featured.drinks}
           columns={teaserColumns(featured.drinks.length)}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          canOrder={site.isOrderingAllowed}
         />
         {text(featured.buttonText) && (
           <div className="flex justify-center">

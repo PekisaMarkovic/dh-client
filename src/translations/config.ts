@@ -1,10 +1,12 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import enCart from "@/translations/en/cart.json";
 import enDrinks from "@/translations/en/drinks.json";
 import enErrors from "@/translations/en/errors.json";
 import enGeneral from "@/translations/en/general.json";
 import enHome from "@/translations/en/home.json";
 import enContact from "@/translations/en/contact.json";
+import srCart from "@/translations/sr/cart.json";
 import srDrinks from "@/translations/sr/drinks.json";
 import srErrors from "@/translations/sr/errors.json";
 import srGeneral from "@/translations/sr/general.json";
@@ -22,8 +24,8 @@ export const HTML_LANG: Record<Language, string> = { sr: "sr-Latn", en: "en" };
 export const OG_LOCALE: Record<Language, string> = { sr: "sr_RS", en: "en_US" };
 
 export const resources = {
-  sr: { g: srGeneral, home: srHome, drinks: srDrinks, contact: srContact, er: srErrors },
-  en: { g: enGeneral, home: enHome, drinks: enDrinks, contact: enContact, er: enErrors },
+  sr: { g: srGeneral, home: srHome, drinks: srDrinks, cart: srCart, contact: srContact, er: srErrors },
+  en: { g: enGeneral, home: enHome, drinks: enDrinks, cart: enCart, contact: enContact, er: enErrors },
 } as const;
 
 // The resources are bundled and the init is synchronous, so the server and the browser render the same text.

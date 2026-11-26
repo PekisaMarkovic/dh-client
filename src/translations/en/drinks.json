@@ -18,6 +18,5 @@
   "resultsFor_one": "{{count}} drink for “{{search}}”",
   "resultsFor_other": "{{count}} drinks for “{{search}}”",
   "noResults": "No drinks for “{{search}}”.",
-  "clearSearch": "Clear the search",
-  "addToCart": "Add to cart"
+  "clearSearch": "Clear the search"
 }

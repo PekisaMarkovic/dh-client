@@ -1,0 +1,33 @@
+{
+  "title": "Cart",
+  "close": "Close the cart",
+  "open": "Open the cart ({{count}})",
+  "add": "Add {{name}} to the cart",
+  "addShort": "Add to cart",
+  "remove": "Remove {{name}} from the cart",
+  "less": "Less: {{name}}",
+  "more": "More: {{name}}",
+  "quantity": "Quantity: {{name}}",
+  "price": "{{price}} RSD",
+  "total": "Total",
+  "next": "Continue",
+  "back": "Back",
+  "send": "Send the order",
+  "empty": "The cart is empty. Add drinks from the menu.",
+  "continueShopping": "Continue shopping",
+  "steps": {
+    "cart": "Cart",
+    "details": "Your details"
+  },
+  "fullName": "Full name",
+  "email": "Email",
+  "phone": "Phone",
+  "pickupDate": "Delivery day",
+  "pickupHint": "Orders received until 15:00 are delivered by our courier the same day, later ones from the next day. The delivery day can be at most a month ahead.",
+  "sentTitle": "Order #{{number}} is sent",
+  "sent": "Thank you! We sent you an email with the order. We will get in touch to confirm it and our courier will bring it to your address.",
+  "invalid": "Check the details of the order.",
+  "delivery": "Delivery",
+  "address": "Delivery address",
+  "addressPlh": "Street and number, town"
+}
