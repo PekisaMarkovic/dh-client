@@ -5,7 +5,9 @@
     "contact": "Kontakt",
     "directions": "Navigacija",
     "main": "Glavna navigacija",
-    "home": "Početna"
+    "home": "Početna",
+    "openMenu": "Otvori meni",
+    "closeMenu": "Zatvori meni"
   },
   "button": {
     "submit": "Pošalji",

@@ -5,7 +5,9 @@
     "contact": "Contact",
     "directions": "Directions",
     "main": "Main navigation",
-    "home": "Home"
+    "home": "Home",
+    "openMenu": "Open the menu",
+    "closeMenu": "Close the menu"
   },
   "button": {
     "submit": "Send",

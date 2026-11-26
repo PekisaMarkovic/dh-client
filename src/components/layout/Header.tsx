@@ -1,6 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import DeliveryButton from "@/components/cart/DeliveryButton";
+import MobileMenu from "@/components/layout/MobileMenu";
+import SiteLogo from "@/components/layout/SiteLogo";
 import StickyHeader from "@/components/layout/StickyHeader";
 import PhoneIcon from "@/icons/PhoneIcon";
 import PinIcon from "@/icons/PinIcon";
@@ -8,11 +9,28 @@ import { ISite } from "@/interfaces";
 import { fullAddress, mapsUrl, phoneHref } from "@/lib/site";
 import { t } from "@/translations/translate";
 
-// the address on the left, the logo (or the name) in the middle, the phone and the cart on the right; it stays at the top
+/**
+ * The header stays at the top.
+ * A phone: one low bar, the menu (burger) on the left, a small logo in the middle, the cart (the van) on the right.
+ * A wide screen: the address on the left, the logo in the middle, the phone and the cart on the right.
+ */
 const Header = ({ site }: { site: ISite }) => (
   <StickyHeader>
-    <div className="mx-auto grid max-w-6xl items-center gap-x-6 gap-y-3 px-4 py-4 md:grid-cols-3">
-      <div className="order-2 flex justify-center md:order-none md:justify-start">
+    {/* the sides take the same width, so the logo is in the middle also without the cart */}
+    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-3 py-2 md:hidden">
+      <div className="justify-self-start">
+        <MobileMenu site={site} />
+      </div>
+      <Link href="/" aria-label={t("g:nav.home")}>
+        <SiteLogo site={site} size="small" />
+      </Link>
+      <div className="justify-self-end">
+        <DeliveryButton />
+      </div>
+    </div>
+
+    <div className="mx-auto hidden max-w-6xl grid-cols-3 items-center gap-6 px-4 py-4 md:grid">
+      <div className="flex justify-start">
         {fullAddress(site) && (
           <a
             href={mapsUrl(site)}
@@ -23,37 +41,21 @@ const Header = ({ site }: { site: ISite }) => (
             <PinIcon className="h-8 w-8 shrink-0" />
             {/* the street on the first line, the city under it */}
             <span className="flex flex-col text-left leading-tight">
-              {site.address && <span className="text-lg sm:text-xl">{site.address}</span>}
-              {site.city && <span className="text-base sm:text-lg">{site.city}</span>}
+              {site.address && <span className="text-xl">{site.address}</span>}
+              {site.city && <span className="text-lg">{site.city}</span>}
             </span>
           </a>
         )}
       </div>
 
-      <div className="order-1 flex flex-col items-center md:order-none">
-        <Link href="/" aria-label={t("g:nav.home")} className="flex flex-col items-center leading-none">
-          {site.logo ? (
-            <Image
-              src={site.logo.url}
-              alt={site.logo.altText || site.name}
-              width={site.logo.width}
-              height={site.logo.height}
-              priority
-              className="h-24 w-auto sm:h-32"
-            />
-          ) : (
-            <>
-              <span className="font-display text-3xl uppercase tracking-wide text-brand sm:text-4xl">{site.name}</span>
-              {site.city && <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-white/70">{site.city}</span>}
-            </>
-          )}
-        </Link>
-      </div>
+      <Link href="/" aria-label={t("g:nav.home")} className="flex justify-center">
+        <SiteLogo site={site} size="large" />
+      </Link>
 
       {/* the phone and, when the site lets the visitors order, the cart (the van) */}
-      <div className="order-3 flex flex-wrap items-center justify-center gap-4 md:order-none md:justify-end">
+      <div className="flex flex-wrap items-center justify-end gap-4">
         {site.phone && (
-          <a href={phoneHref(site.phone)} className="flex items-center gap-3 text-xl font-bold text-brand hover:text-amber-300 sm:text-2xl">
+          <a href={phoneHref(site.phone)} className="flex items-center gap-3 text-2xl font-bold text-brand hover:text-amber-300">
             <PhoneIcon className="h-8 w-8 shrink-0" />
             <span>{site.phone}</span>
           </a>
