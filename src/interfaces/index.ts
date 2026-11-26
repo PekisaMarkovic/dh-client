@@ -31,8 +31,19 @@ export interface Paginated<T> {
 // draft: the site shows a "coming soon" page and is hidden from Google, published: the real site
 export type SiteStatus = "draft" | "published";
 
+/** A category of the menu (only the ones that have drinks) */
+export interface ICategory {
+  categoryId: number;
+  name: string;
+  /** the name in the address: /karta-pica/<slug> */
+  slug: string;
+  drinksCount: number;
+}
+
 export interface ISite {
   status: SiteStatus;
+  /** true when the visitors can order drinks (for now it is only turned on in the database) */
+  isOrderingAllowed: boolean;
   name: string;
   city: string | null;
   address: string | null;

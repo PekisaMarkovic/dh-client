@@ -8,5 +8,15 @@
   "loadError": "The drinks menu is not available right now.",
   "retry": "Please try again a bit later.",
   "perPage": "Drinks per page",
-  "loading": "Loading the drinks…"
+  "loading": "Loading the drinks…",
+  "categories": "Drink categories",
+  "allCategories": "All drinks",
+  "search": "Search drinks",
+  "searchPlh": "Search drinks…",
+  "results_one": "{{count}} drink",
+  "results_other": "{{count}} drinks",
+  "resultsFor_one": "{{count}} drink for “{{search}}”",
+  "resultsFor_other": "{{count}} drinks for “{{search}}”",
+  "noResults": "No drinks for “{{search}}”.",
+  "clearSearch": "Clear the search"
 }

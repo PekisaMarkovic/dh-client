@@ -12,7 +12,10 @@ type Props = {
 // the first row is above the fold, its images are loaded right away
 const PRIORITY_COUNT = 4;
 
-const DrinksGrid = ({ drinks, columns = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5", sizes }: Props) => (
+// the menu: next to the sidebar of the categories, 3 or 4 drinks in a row on a wide screen
+export const MENU_COLUMNS = "grid-cols-2 sm:grid-cols-3 xl:grid-cols-4";
+
+const DrinksGrid = ({ drinks, columns = MENU_COLUMNS, sizes }: Props) => (
   <ul className={`grid gap-4 ${columns}`}>
     {drinks.map((drink, index) => (
       <DrinkCard key={drink.drinkId} drink={drink} priority={index < PRIORITY_COUNT} sizes={sizes} />

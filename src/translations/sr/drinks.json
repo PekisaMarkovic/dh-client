@@ -8,5 +8,17 @@
   "loadError": "Karta pića trenutno nije dostupna.",
   "retry": "Pokušajte ponovo malo kasnije.",
   "perPage": "Pića po strani",
-  "loading": "Učitavanje pića…"
+  "loading": "Učitavanje pića…",
+  "categories": "Kategorije pića",
+  "allCategories": "Sva pića",
+  "search": "Pretraži pića",
+  "searchPlh": "Pretraži pića…",
+  "results_one": "{{count}} piće",
+  "results_few": "{{count}} pića",
+  "results_other": "{{count}} pića",
+  "resultsFor_one": "{{count}} piće za „{{search}}“",
+  "resultsFor_few": "{{count}} pića za „{{search}}“",
+  "resultsFor_other": "{{count}} pića za „{{search}}“",
+  "noResults": "Nema pića za „{{search}}“.",
+  "clearSearch": "Obriši pretragu"
 }

@@ -6,6 +6,7 @@ import { ISite } from "@/interfaces";
  */
 export const fallbackSite: ISite = {
   status: "draft",
+  isOrderingAllowed: false,
   name: "",
   city: null,
   address: null,

@@ -12,7 +12,7 @@ type Props = {
 };
 
 // the image of a drink in a card (square, the whole bottle is visible), a bottle icon while the drink has none
-const DrinkImage = ({ image, name, priority, sizes = "(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw" }: Props) => (
+const DrinkImage = ({ image, name, priority, sizes = "(min-width: 1280px) 20vw, (min-width: 640px) 30vw, 50vw" }: Props) => (
   <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-stone-50">
     {image ? (
       <Image
