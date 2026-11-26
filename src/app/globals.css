@@ -46,10 +46,29 @@
   }
 }
 
+/* iOS Safari draws a date field by its own rules: it is wider than width: 100% (the form then scrolls sideways)
+   and its text sticks to the top. Without its own look it is as wide and as high as the other fields */
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+/* a jump to an anchor (#contact) stops a little under the header */
+[id] {
+  scroll-margin-top: 1rem;
+}
+
 html {
   scroll-behavior: smooth;
-  /* the header stays at the top (StickyHeader sets its height), a jump to #contact stops under it */
-  scroll-padding-top: calc(var(--header-height, 0px) + 1rem);
+  /* the header stays at the top (StickyHeader sets its height): what is under it counts as hidden.
+     Exactly its height: Next.js only scrolls a new page to the top when its top is hidden, with more the top
+     of every page looked hidden and Next.js scrolled to the next section instead */
+  scroll-padding-top: var(--header-height, 0px);
   background: var(--background);
 }
 

@@ -29,7 +29,8 @@ const CartItemsStep = ({ onNext }: Props) => {
 
   return (
     <>
-      <ul className="flex-1 divide-y divide-stone-800 overflow-y-auto pr-1">
+      {/* -mr/pr: the scrollbar goes into the padding of the panel, not over the remove buttons and the amounts */}
+      <ul className="-mr-4 flex-1 divide-y divide-stone-800 overflow-y-auto pr-4">
         {items.map((item) => (
           <CartItemRow key={item.drinkId} item={item} />
         ))}

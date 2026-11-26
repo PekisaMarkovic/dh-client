@@ -41,7 +41,12 @@ const OrderDetailsStep = ({ onBack, onSent }: Props) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit((values) => mutate(values))} noValidate className="flex flex-1 flex-col gap-4 overflow-y-auto pr-1">
+      <form
+        onSubmit={methods.handleSubmit((values) => mutate(values))}
+        noValidate
+        // the scrollbar goes into the padding of the panel; nothing scrolls sideways
+        className="-mr-4 flex flex-1 flex-col gap-4 overflow-x-hidden overflow-y-auto pr-4"
+      >
         <InputText isRequired name="fullName" label={t("cart:fullName")} autoComplete="name" />
         <InputText isRequired name="email" type="email" label={t("cart:email")} autoComplete="email" />
         <InputText isRequired name="phone" type="tel" label={t("cart:phone")} autoComplete="tel" />
