@@ -1,4 +1,5 @@
 import DrinkImage from "@/components/drinks/DrinkImage";
+import CartIcon from "@/icons/CartIcon";
 import { IDrink } from "@/interfaces";
 import { t } from "@/translations/translate";
 import { formatPrice } from "@/utils/money";
@@ -10,14 +11,6 @@ type Props = {
   // the site lets the visitors order: the cart is shown
   canOrder?: boolean;
 };
-
-const CartIcon = ({ className }: { className: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="9" cy="20" r="1.5" />
-    <circle cx="18" cy="20" r="1.5" />
-    <path d="M2.5 3h2.6l2.4 11.6a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21.5 7H6" />
-  </svg>
-);
 
 // one drink of the menu, a list item (<li>)
 // shortcut: the cart only shows the way, it does nothing yet; make it a button when ordering is built
@@ -43,7 +36,9 @@ const DrinkCard = ({ drink, priority, sizes, canOrder }: Props) => (
       <div className="mt-auto flex items-end justify-between gap-2 pt-2">
         <div>
           <p className="text-lg font-bold text-brand">{t("drinks:price", { price: formatPrice(drink.price) })}</p>
-          <p className={`text-xs ${drink.inStock ? "text-green-400" : "text-stone-500"}`}>{drink.inStock ? t("drinks:inStock") : t("drinks:outOfStock")}</p>
+          <p className={`text-xs ${drink.inStock ? "text-green-400" : "text-stone-500"}`}>
+            {drink.inStock ? t("drinks:inStock") : t("drinks:outOfStock")}
+          </p>
         </div>
         {canOrder && (
           // always visible, also on a phone that has no hover

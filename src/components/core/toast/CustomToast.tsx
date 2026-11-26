@@ -2,9 +2,7 @@
 
 import { ToastContainer, toast } from "react-toastify";
 
-const box = (color: string, message: string) => (
-  <div className={`rounded-lg px-4 py-2 text-sm text-white ${color}`}>{message}</div>
-);
+const box = (color: string, message: string) => <div className={`rounded-lg px-4 py-2 text-sm text-white ${color}`}>{message}</div>;
 
 const options = { closeButton: false, icon: false, className: "!bg-transparent !p-0 !shadow-none", hideProgressBar: true } as const;
 

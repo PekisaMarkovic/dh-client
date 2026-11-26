@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Archivo_Black, Geist, Geist_Mono } from "next/font/google";
+import RuntimeMarker from "@/components/layout/RuntimeMarker";
 import SiteShell from "@/components/layout/SiteShell";
 import { isMaintenance } from "@/lib/site";
 import { homeSeo, pageMetadata, siteIcons, siteUrl } from "@/lib/seo";
-import { connection } from "next/server";
 import { Suspense } from "react";
 import { APP_ROOT_ID } from "@/components/core/modal/Modal";
 import { getSiteOrFallback } from "@/services/site-service";
@@ -44,14 +44,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// A marker for Next: the title and the canonical address of the pages of the drinks menu depend on ?page= (runtime data),
-// so they stream in after the page on purpose. The page itself is still prerendered. Without it the build fails.
-async function Connection() {
-  await connection();
-
-  return null;
-}
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang={HTML_LANG[DEFAULT_LANGUAGE]} className={`${geistSans.variable} ${geistMono.variable} ${display.variable} h-full antialiased`}>
@@ -62,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <SiteShell>{children}</SiteShell>
             </Suspense>
             <Suspense>
-              <Connection />
+              <RuntimeMarker />
             </Suspense>
           </div>
         </Providers>

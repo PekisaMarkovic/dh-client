@@ -30,7 +30,10 @@ const DrinksTeaser = ({ site }: { site: ISite }) => {
     <section className="bg-surface">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-20">
         {text(featured.title) && <SectionTitle text={text(featured.title)} />}
-        <DrinksGrid drinks={featured.drinks} columns={teaserColumns(featured.drinks.length)} sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+        <DrinksGrid
+          drinks={featured.drinks}
+          columns={teaserColumns(featured.drinks.length)}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           canOrder={site.isOrderingAllowed}
         />
         {text(featured.buttonText) && (

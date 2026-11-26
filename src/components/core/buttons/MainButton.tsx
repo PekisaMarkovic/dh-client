@@ -15,7 +15,18 @@ type Props = {
   onClick?: () => void;
 };
 
-const MainButton = ({ text, variant = "contained", size = "medium", htmlType = "button", className = "", leftIcon, rightIcon, isLoading, disabled, onClick }: Props) => (
+const MainButton = ({
+  text,
+  variant = "contained",
+  size = "medium",
+  htmlType = "button",
+  className = "",
+  leftIcon,
+  rightIcon,
+  isLoading,
+  disabled,
+  onClick,
+}: Props) => (
   <button
     type={htmlType}
     onClick={onClick}

@@ -23,7 +23,9 @@ const Hero = ({ site }: { site: ISite }) => {
         {text(hero.title) && (
           <Heading as="h1" size="6xl" color="brand" align="center" text={text(hero.title)} className="[text-shadow:3px_3px_0_rgba(194,65,12,0.6)]" />
         )}
-        {text(hero.subtitle) && <p className="font-display text-4xl text-accent [text-shadow:3px_3px_0_rgba(0,0,0,0.5)] sm:text-7xl">{text(hero.subtitle)}</p>}
+        {text(hero.subtitle) && (
+          <p className="font-display text-4xl text-accent [text-shadow:3px_3px_0_rgba(0,0,0,0.5)] sm:text-7xl">{text(hero.subtitle)}</p>
+        )}
         {text(hero.text) && <Paragraph size="lg" color="white" align="center" className="mt-2 max-w-xl opacity-80" text={text(hero.text)} />}
         {text(hero.buttonText) && <MainLink href="/karta-pica" text={text(hero.buttonText)} size="large" className="mt-6" />}
       </div>

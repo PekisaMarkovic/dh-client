@@ -44,9 +44,7 @@ export const menuSeo = (site: ISite) => ({
 
 /** The icon of the browser tab: the logo of the site, a default icon until a logo is uploaded */
 export const siteIcons = (site: ISite): Metadata["icons"] =>
-  site.logo
-    ? { icon: [{ url: site.logo.url, type: "image/webp" }], shortcut: [site.logo.url], apple: [site.logo.url] }
-    : { icon: "/favicon.ico" };
+  site.logo ? { icon: [{ url: site.logo.url, type: "image/webp" }], shortcut: [site.logo.url], apple: [site.logo.url] } : { icon: "/favicon.ico" };
 
 // a JSON-LD block is put in a <script>, so "<" must never end it
 export const jsonLdString = (data: object) => JSON.stringify(data).replace(/</g, "\\u003c");

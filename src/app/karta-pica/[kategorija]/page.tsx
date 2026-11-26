@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import { MenuPage, menuMetadata, SearchParams } from "@/app/karta-pica/menu";
+import DrinksMenuPage from "@/modules/drinks-menu/DrinksMenuPage";
+import { menuMetadata } from "@/modules/drinks-menu/menu-metadata";
+import { SearchParams } from "@/modules/drinks-menu/menu-state";
 
-type Params = Promise<{ kategorija: string }>;
+type Props = {
+  params: Promise<{ kategorija: string }>;
+  searchParams: SearchParams;
+};
 
-// /karta-pica/vino: the menu of one category, its own page for Google
-export function generateMetadata({ params, searchParams }: { params: Params; searchParams: SearchParams }): Promise<Metadata> {
-  return menuMetadata(searchParams, params.then((p) => p.kategorija));
-}
+// /karta-pica/vino: the drinks of one category, its own page for Google
+export const generateMetadata = ({ params, searchParams }: Props): Promise<Metadata> =>
+  menuMetadata(
+    searchParams,
+    params.then((p) => p.kategorija),
+  );
 
-export default function CategoryMenuPage({ params, searchParams }: { params: Params; searchParams: SearchParams }) {
-  return <MenuPage searchParams={searchParams} slugParam={params.then((p) => p.kategorija)} />;
-}
+const Page = ({ params, searchParams }: Props) => <DrinksMenuPage searchParams={searchParams} slugParam={params.then((p) => p.kategorija)} />;
+
+export default Page;

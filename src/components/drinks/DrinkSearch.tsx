@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { inputStyle } from "@/components/core/input/style";
+import SearchIcon from "@/icons/SearchIcon";
 
 type Props = {
   action: string;
@@ -79,11 +80,12 @@ const DrinkSearch = ({ action, value, label, placeholder, keep }: Props) => {
         placeholder={placeholder}
         className={`${inputStyle({})} h-10 pr-11`}
       />
-      <button type="submit" aria-label={label} className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-stone-500 hover:text-brand">
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="7" />
-          <path d="m20 20-3.5-3.5" />
-        </svg>
+      <button
+        type="submit"
+        aria-label={label}
+        className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-stone-500 hover:text-brand"
+      >
+        <SearchIcon />
       </button>
     </form>
   );

@@ -1,4 +1,6 @@
-import { InstagramIcon, PhoneIcon, PinIcon } from "@/components/core/icons";
+import InstagramIcon from "@/icons/InstagramIcon";
+import PhoneIcon from "@/icons/PhoneIcon";
+import PinIcon from "@/icons/PinIcon";
 import { ISite } from "@/interfaces";
 import { fullAddress, mapsUrl, phoneHref, text } from "@/lib/site";
 import { t } from "@/translations/translate";
@@ -24,7 +26,13 @@ const Footer = ({ site }: { site: ISite }) => (
       <div className="flex flex-col items-center gap-3">
         <h2 className="font-display text-xl text-white">{t("g:button.instagram")}</h2>
         {site.instagram && (
-          <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label={t("g:button.instagram")} className="text-brand hover:text-amber-300">
+          <a
+            href={site.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("g:button.instagram")}
+            className="text-brand hover:text-amber-300"
+          >
             <InstagramIcon className="h-10 w-10" />
           </a>
         )}
@@ -34,9 +42,7 @@ const Footer = ({ site }: { site: ISite }) => (
         <p className="whitespace-pre-line text-stone-300">{text(site.workingHours)}</p>
       </div>
     </div>
-    <p className="border-t border-white/10 py-4 text-center text-xs text-stone-500">
-      © 2026 {site.name}
-    </p>
+    <p className="border-t border-white/10 py-4 text-center text-xs text-stone-500">© 2026 {site.name}</p>
   </footer>
 );
 

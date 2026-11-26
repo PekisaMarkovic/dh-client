@@ -25,7 +25,9 @@ export async function getDrinks(page = 1, limit = DRINKS_PAGE_SIZE, categoryIds:
   cacheTag("drinks");
 
   try {
-    const { data } = await getApi().get<Paginated<IDrink>>(DrinkApis.getDrinks(), { params: { page, limit, categoryIds: categoryIds.length ? categoryIds.join(",") : undefined, search: search || undefined } });
+    const { data } = await getApi().get<Paginated<IDrink>>(DrinkApis.getDrinks(), {
+      params: { page, limit, categoryIds: categoryIds.length ? categoryIds.join(",") : undefined, search: search || undefined },
+    });
 
     return { drinks: data };
   } catch (error) {

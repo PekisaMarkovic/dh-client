@@ -20,7 +20,12 @@ const PageSize = ({ label, value, options, buildHref }: Props) => (
       {options.map((size) => (
         <li key={size}>
           {/* nofollow: the same drinks in another page size are not new pages for Google */}
-          <Link href={buildHref(size)} rel="nofollow" aria-current={size === value ? "true" : undefined} className={`${ITEM} ${size === value ? ACTIVE : IDLE}`}>
+          <Link
+            href={buildHref(size)}
+            rel="nofollow"
+            aria-current={size === value ? "true" : undefined}
+            className={`${ITEM} ${size === value ? ACTIVE : IDLE}`}
+          >
             {size}
           </Link>
         </li>

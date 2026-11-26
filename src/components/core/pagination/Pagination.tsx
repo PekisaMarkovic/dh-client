@@ -43,7 +43,11 @@ const Pagination = ({ page, totalPages, buildHref }: Props) => {
 
         {pages.map((p, index) => (
           <li key={p} className="flex items-center gap-2">
-            {index > 0 && p - pages[index - 1] > 1 && <span aria-hidden="true" className="px-1 text-stone-500">…</span>}
+            {index > 0 && p - pages[index - 1] > 1 && (
+              <span aria-hidden="true" className="px-1 text-stone-500">
+                …
+              </span>
+            )}
             <Link
               href={buildHref(p)}
               aria-label={t("g:pagination.page", { page: p })}

@@ -1,3 +1,4 @@
+import BottleIcon from "@/icons/BottleIcon";
 import Image from "next/image";
 
 type Props = {
@@ -25,10 +26,7 @@ const DrinkImage = ({ image, name, priority, sizes = "(min-width: 1280px) 20vw, 
         className="h-full w-full object-contain p-3"
       />
     ) : (
-      <svg viewBox="0 0 48 48" className="h-1/3 w-1/3 text-stone-300" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M20 4h8v8l3 5c.6 1 1 2.1 1 3.2V42a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2V20.2c0-1.1.4-2.2 1-3.2l3-5V4Z" />
-        <path d="M16 26h16M16 36h16" />
-      </svg>
+      <BottleIcon className="h-1/3 w-1/3 text-stone-300" />
     )}
   </div>
 );

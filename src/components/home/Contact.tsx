@@ -1,5 +1,5 @@
 import MainLink from "@/components/core/buttons/MainLink";
-import { PhoneIcon } from "@/components/core/icons";
+import PhoneIcon from "@/icons/PhoneIcon";
 import Paragraph from "@/components/core/typography/Paragraph";
 import SectionTitle from "@/components/core/typography/SectionTitle";
 import { ISite } from "@/interfaces";

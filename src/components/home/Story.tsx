@@ -1,5 +1,5 @@
 import MainLink from "@/components/core/buttons/MainLink";
-import { BottleIcon } from "@/components/core/icons";
+import BottleIcon from "@/icons/BottleIcon";
 import SiteImage from "@/components/core/SiteImage";
 import Paragraph from "@/components/core/typography/Paragraph";
 import SectionTitle from "@/components/core/typography/SectionTitle";
