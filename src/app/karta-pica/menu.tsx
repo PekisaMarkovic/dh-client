@@ -139,7 +139,7 @@ async function DrinksPage({ state }: { state: MenuState }) {
           {state.search ? t("drinks:resultsFor", { count: drinks.meta.totalItems, search: state.search }) : t("drinks:results", { count: drinks.meta.totalItems })}
         </p>
       </div>
-      <DrinksGrid drinks={drinks.items} />
+      <DrinksGrid drinks={drinks.items} canOrder={site.isOrderingAllowed} />
       <Pagination page={state.page} totalPages={totalPages} buildHref={(page) => hrefOf({ ...state, page })} />
     </>
   );

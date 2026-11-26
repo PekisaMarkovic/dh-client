@@ -38,6 +38,11 @@ if (!i18n.isInitialized) {
     interpolation: { escapeValue: false },
     initAsync: false,
   });
+} else {
+  // the dev server loaded the json again after a change: the new texts replace the old ones without a restart
+  for (const [lng, namespaces] of Object.entries(resources)) {
+    for (const [ns, texts] of Object.entries(namespaces)) i18n.addResourceBundle(lng, ns, texts, true, true);
+  }
 }
 
 export default i18n;
