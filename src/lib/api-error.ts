@@ -13,6 +13,7 @@ type ApiErrorBody = {
  */
 export const getApiErrorMessage = (error: unknown, fallback = t("g:errorMessage")) => {
   if (axios.isCancel(error)) return error.message || fallback;
+
   if (!axios.isAxiosError<ApiErrorBody>(error)) return fallback;
 
   if (!error.response) {

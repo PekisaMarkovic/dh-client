@@ -1,4 +1,4 @@
-import MainLink from "@/components/core/buttons/MainLink";
+import InstagramIcon from "@/icons/InstagramIcon";
 import PhoneIcon from "@/icons/PhoneIcon";
 import Paragraph from "@/components/core/typography/Paragraph";
 import SectionTitle from "@/components/core/typography/SectionTitle";
@@ -21,9 +21,15 @@ const Contact = ({ site }: { site: ISite }) => {
       )}
       <Paragraph text={t("home:contact.text")} />
       {site.instagram && (
-        <div>
-          <MainLink href={site.instagram} isExternal variant="alternative" text={t("g:button.instagram")} />
-        </div>
+        <a
+          href={site.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-fit items-center gap-2 font-display text-xl text-brand hover:text-amber-300"
+        >
+          <InstagramIcon className="h-6 w-6" />
+          {t("g:button.instagram")}
+        </a>
       )}
       {address && (
         <iframe

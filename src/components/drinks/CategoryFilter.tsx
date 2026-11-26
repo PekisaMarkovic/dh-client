@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ChipScroller from "@/components/drinks/ChipScroller";
 import { ICategory } from "@/interfaces";
 
 type Props = {
@@ -35,13 +36,13 @@ const CategoryFilter = ({ label, allLabel, categories, value, buildHref }: Props
   };
 
   return (
-    <nav aria-label={label} className="-mx-4 overflow-x-auto px-4 pb-1 [scrollbar-width:thin] lg:mx-0 lg:overflow-visible lg:px-0">
+    <ChipScroller label={label} activeKey={String(value)} className="-mx-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:overflow-visible lg:px-0 lg:pb-0">
       <p className="mb-3 hidden text-xs font-semibold uppercase tracking-wider text-stone-400 lg:block">{label}</p>
       <ul className="flex gap-2 lg:flex-col lg:gap-1">
         {item(null)}
         {categories.map(item)}
       </ul>
-    </nav>
+    </ChipScroller>
   );
 };
 

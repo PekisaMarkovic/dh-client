@@ -58,3 +58,24 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+/* every scrollbar of the site (the page, the cart, the row of the categories): thin and amber on the dark site,
+   instead of the wide light one of the system. scrollbar-* for Firefox and the new Chrome, ::-webkit-* for Safari */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(245 158 11 / 0.6) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: rgb(245 158 11 / 0.6);
+}
