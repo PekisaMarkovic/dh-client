@@ -44,7 +44,7 @@ const MobileMenu = ({ site }: { site: ISite }) => {
         closeLabel={t("nav.closeMenu")}
         title={
           <Link href="/" onClick={close} aria-label={t("nav.home")}>
-            <SiteLogo site={site} size="small" />
+            <SiteLogo site={site} size="medium" />
           </Link>
         }
       >

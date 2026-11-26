@@ -1,6 +1,7 @@
 "use client";
 
-import { PropsWithChildren, ReactNode, useEffect, useId, useRef } from "react";
+import { PropsWithChildren, ReactNode, useEffect, useId, useRef, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 
 type Props = PropsWithChildren<{
   isOpen: boolean;
@@ -18,10 +19,21 @@ type Props = PropsWithChildren<{
  * A panel that slides in from the side over a dark overlay (the cart, the menu on a phone).
  * While it is open: Escape and a click on the overlay close it, the page behind does not scroll,
  * the focus is in the panel. While it is closed nothing in it can be focused or read (inert).
+ * It is drawn in <body>: inside the header (backdrop-blur) a fixed panel would only be as high as the header.
  */
+
+// false on the server and in the first render of the browser, there is no <body> to draw into then
+const noSubscribe = () => () => {};
+const useIsBrowser = () =>
+  useSyncExternalStore(
+    noSubscribe,
+    () => true,
+    () => false,
+  );
 const SidePanel = ({ isOpen, onClose, side, title, label, closeLabel, children }: Props) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
+  const isBrowser = useIsBrowser();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -42,7 +54,9 @@ const SidePanel = ({ isOpen, onClose, side, title, label, closeLabel, children }
   const position = side === "right" ? "right-0 border-l" : "left-0 border-r";
   const hidden = side === "right" ? "translate-x-full" : "-translate-x-full";
 
-  return (
+  if (!isBrowser) return null;
+
+  return createPortal(
     <div className={`fixed inset-0 z-50 ${isOpen ? "" : "pointer-events-none"}`} inert={!isOpen}>
       <div
         aria-hidden="true"
@@ -70,7 +84,8 @@ const SidePanel = ({ isOpen, onClose, side, title, label, closeLabel, children }
 
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
 

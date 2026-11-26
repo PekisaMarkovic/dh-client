@@ -11,7 +11,7 @@ import { t } from "@/translations/translate";
 
 /**
  * The header stays at the top.
- * A phone: one low bar, the menu (burger) on the left, a small logo in the middle, the cart (the van) on the right.
+ * A phone: one low bar, the menu (burger) on the left, a small logo in the middle (from 550 px), the cart (the van) on the right.
  * A wide screen: the address on the left, the logo in the middle, the phone and the cart on the right.
  */
 const Header = ({ site }: { site: ISite }) => (
@@ -21,10 +21,12 @@ const Header = ({ site }: { site: ISite }) => (
       <div className="justify-self-start">
         <MobileMenu site={site} />
       </div>
-      <Link href="/" aria-label={t("g:nav.home")}>
+      {/* a very narrow phone has no room for it, the logo is also in the menu */}
+      <Link href="/" aria-label={t("g:nav.home")} className="hidden min-[550px]:block">
         <SiteLogo site={site} size="small" />
       </Link>
-      <div className="justify-self-end">
+      {/* always the last column: also when the logo in the middle is hidden */}
+      <div className="col-start-3 justify-self-end">
         <DeliveryButton />
       </div>
     </div>
