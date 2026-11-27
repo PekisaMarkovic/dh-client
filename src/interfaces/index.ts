@@ -117,6 +117,8 @@ export interface ISite {
   instagram: Text;
   workingHours: Text;
   logo: IImage | null;
+  /** a picture of the map from the dashboard, shown until the Google map may load; null: the site draws one */
+  mapImage: IImage | null;
   /** the published pages in the order of the menu */
   pages: IPage[];
 }

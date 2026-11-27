@@ -14,6 +14,7 @@ export const fallbackSite: ISite = {
   instagram: null,
   workingHours: null,
   logo: null,
+  mapImage: null,
   pages: [],
 };
 

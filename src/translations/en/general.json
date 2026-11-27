@@ -42,5 +42,15 @@
   },
   "maintenance": {
     "title": "Coming soon"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "text": "This site sets no cookies of its own. The Google map in the contact section sets Google cookies when it loads. You can accept or reject them, the map can always be opened by hand.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "settings": "Cookie settings",
+    "showMap": "Show the map",
+    "mapNote": "Google sets its cookies when the map loads.",
+    "openMaps": "Open in Google Maps"
   }
 }

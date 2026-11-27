@@ -42,5 +42,15 @@
   },
   "maintenance": {
     "title": "Sajt je u izradi"
+  },
+  "cookies": {
+    "title": "Kolačići",
+    "text": "Sajt ne koristi svoje kolačiće. Google mapa u kontaktu, kad se učita, postavlja kolačiće kompanije Google. Možete je prihvatiti ili odbiti, mapu uvek možete otvoriti i ručno.",
+    "accept": "Prihvati",
+    "reject": "Odbij",
+    "settings": "Podešavanja kolačića",
+    "showMap": "Prikaži mapu",
+    "mapNote": "Učitavanjem mape Google postavlja svoje kolačiće.",
+    "openMaps": "Otvori u Google mapama"
   }
 }

@@ -3,6 +3,7 @@ import PhoneIcon from "@/icons/PhoneIcon";
 import PinIcon from "@/icons/PinIcon";
 import { ISite } from "@/interfaces";
 import Link from "next/link";
+import CookieSettingsButton from "@/components/cookies/CookieSettingsButton";
 import { footerPages, fullAddress, mapsUrl, pageHref, phoneHref, text } from "@/lib/site";
 import { t } from "@/translations/translate";
 
@@ -52,7 +53,10 @@ const Footer = ({ site }: { site: ISite }) => (
         ))}
       </nav>
     )}
-    <p className="border-t border-white/10 py-4 text-center text-xs text-stone-500">© 2026 {site.name}</p>
+    <div className="flex flex-wrap items-center justify-center gap-x-4 border-t border-white/10 py-3">
+      <p className="text-xs text-stone-500">© 2026 {site.name}</p>
+      <CookieSettingsButton />
+    </div>
   </footer>
 );
 

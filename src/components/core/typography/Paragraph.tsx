@@ -3,7 +3,8 @@ import { ReactNode } from "react";
 type Props = {
   className?: string;
   size?: "xs" | "sm" | "base" | "lg";
-  color?: "black" | "white" | "grey" | "brand" | "red" | "green";
+  // dark and link: on a white background (e.g. the card over the map)
+  color?: "black" | "white" | "grey" | "brand" | "red" | "green" | "dark" | "link";
   weight?: "normal" | "medium" | "bold";
   align?: "left" | "center";
   noWrap?: boolean;
@@ -17,6 +18,8 @@ const COLOR = {
   brand: "text-brand",
   red: "text-red-400",
   green: "text-green-400",
+  dark: "text-stone-800",
+  link: "text-blue-600 hover:underline",
 };
 const WEIGHT = { normal: "font-normal", medium: "font-medium", bold: "font-bold" };
 const ALIGN = { left: "text-left", center: "text-center" };

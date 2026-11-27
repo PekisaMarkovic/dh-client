@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import CartDrawer from "@/components/cart/CartDrawer";
+import CookieBanner from "@/components/cookies/CookieBanner";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import Maintenance from "@/components/layout/Maintenance";
@@ -24,6 +25,7 @@ const SiteShell = async ({ children }: PropsWithChildren) => {
       <main className="flex-1">{children}</main>
       <Footer site={site} />
       <CartDrawer />
+      <CookieBanner />
     </CartProvider>
   );
 };
