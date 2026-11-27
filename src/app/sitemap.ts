@@ -1,12 +1,17 @@
 import type { MetadataRoute } from "next";
-import { isMaintenance } from "@/lib/site";
+import { HOME_SLUG, isMaintenance, MENU_SLUG } from "@/lib/site";
 import { siteUrl } from "@/lib/seo";
 import { getCategories, getDrinks } from "@/services/drink-service";
 import { getSiteOrFallback } from "@/services/site-service";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // nothing to index while the site is a draft
-  if (isMaintenance(await getSiteOrFallback())) return [];
+  const site = await getSiteOrFallback();
+
+  if (isMaintenance(site)) return [];
+
+  // the published pages the admin made (the home page and the menu are below)
+  const pages = site.pages.filter((page) => page.slug !== HOME_SLUG && page.slug !== MENU_SLUG).map((page) => ({ url: `${siteUrl}/${page.slug}` }));
 
   // every page of the drinks menu is its own address, so Google finds all the drinks
   const first = await getDrinks(1);
@@ -19,5 +24,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categories = (await getCategories()).map((category) => ({ url: `${siteUrl}/karta-pica/${category.slug}` }));
 
   // no lastModified: the current time is not cacheable and the pages change when the admin changes the site
-  return [{ url: siteUrl }, ...menu, ...categories];
+  return [{ url: siteUrl }, ...pages, ...menu, ...categories];
 }

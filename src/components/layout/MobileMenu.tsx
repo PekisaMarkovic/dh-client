@@ -10,13 +10,13 @@ import MenuIcon from "@/icons/MenuIcon";
 import PhoneIcon from "@/icons/PhoneIcon";
 import PinIcon from "@/icons/PinIcon";
 import { ISite } from "@/interfaces";
-import { fullAddress, mapsUrl, phoneHref } from "@/lib/site";
+import { fullAddress, mapsUrl, navPages, pageHref, phoneHref } from "@/lib/site";
 
 const LINK = "flex items-center gap-3 rounded-lg p-3 text-lg font-semibold text-brand transition hover:bg-brand-dark hover:text-amber-300";
 
 /**
  * The burger in the header on a phone: a panel from the left (the cart comes from the right)
- * with the logo, the address, the phone and the Instagram of the shop.
+ * with the logo, the pages of the site, the address, the phone and the Instagram of the shop.
  */
 const MobileMenu = ({ site }: { site: ISite }) => {
   const { t } = useTranslation("g");
@@ -49,6 +49,11 @@ const MobileMenu = ({ site }: { site: ISite }) => {
         }
       >
         <nav aria-label={t("nav.main")} className="flex flex-col gap-1">
+          {navPages(site).map((page) => (
+            <Link key={page.slug} href={pageHref(page)} onClick={close} className={LINK}>
+              {page.title}
+            </Link>
+          ))}
           {address && (
             <a href={mapsUrl(site)} target="_blank" rel="noopener noreferrer" className={LINK}>
               <PinIcon className="h-7 w-7 shrink-0" />

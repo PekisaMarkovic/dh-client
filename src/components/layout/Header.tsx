@@ -6,7 +6,7 @@ import StickyHeader from "@/components/layout/StickyHeader";
 import PhoneIcon from "@/icons/PhoneIcon";
 import PinIcon from "@/icons/PinIcon";
 import { ISite } from "@/interfaces";
-import { fullAddress, mapsUrl, phoneHref } from "@/lib/site";
+import { fullAddress, mapsUrl, navPages, pageHref, phoneHref } from "@/lib/site";
 import { t } from "@/translations/translate";
 
 /**
@@ -65,6 +65,16 @@ const Header = ({ site }: { site: ISite }) => (
         <DeliveryButton />
       </div>
     </div>
+
+    {navPages(site).length > 0 && (
+      <nav aria-label={t("g:nav.main")} className="hidden justify-center gap-8 border-t border-white/10 py-2 md:flex">
+        {navPages(site).map((page) => (
+          <Link key={page.slug} href={pageHref(page)} className="font-semibold text-brand hover:text-amber-300">
+            {page.title}
+          </Link>
+        ))}
+      </nav>
+    )}
   </StickyHeader>
 );
 

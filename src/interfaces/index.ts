@@ -40,21 +40,72 @@ export interface ICategory {
   drinksCount: number;
 }
 
+type Text = string | null;
+
+/** The kinds of sections a page can have, the site has one component per kind */
+export type SectionType = "hero" | "featured" | "story" | "info";
+
+// every section of a page, a text that is null is not filled in (the section leaves it out)
+export interface IHeroSection {
+  sectionId: number;
+  type: "hero";
+  title: Text;
+  subtitle: Text;
+  text: Text;
+  buttonText: Text;
+  image: IImage | null;
+}
+
+/** the recommended drinks (the admin picks them, the first drinks of the menu when none are picked) */
+export interface IFeaturedSection {
+  sectionId: number;
+  type: "featured";
+  title: Text;
+  buttonText: Text;
+  drinks: IDrink[];
+}
+
+export interface IStorySection {
+  sectionId: number;
+  type: "story";
+  title: Text;
+  paragraph1: Text;
+  paragraph2: Text;
+  buttonText: Text;
+  image: IImage | null;
+}
+
+export interface IInfoSection {
+  sectionId: number;
+  type: "info";
+  title: Text;
+  text: Text;
+  buttonText: Text;
+  image: IImage | null;
+}
+
+export type ISection = IHeroSection | IFeaturedSection | IStorySection | IInfoSection;
+
+/** A published page: its address ("" is the home page), what Google shows and its sections in order */
+export interface IPage {
+  title: string;
+  slug: string;
+  // image is the picture shown when the page is shared
+  seo: { title: Text; description: Text; image: IImage | null };
+  sections: ISection[];
+}
+
 export interface ISite {
   status: SiteStatus;
   /** true when the visitors can order drinks (for now it is only turned on in the database) */
   isOrderingAllowed: boolean;
   name: string;
-  city: string | null;
-  address: string | null;
-  phone: string | null;
-  instagram: string | null;
-  workingHours: string | null;
+  city: Text;
+  address: Text;
+  phone: Text;
+  instagram: Text;
+  workingHours: Text;
   logo: IImage | null;
-  hero: { title: string | null; subtitle: string | null; text: string | null; buttonText: string | null; image: IImage | null };
-  featured: { title: string | null; buttonText: string | null; drinks: IDrink[] };
-  story: { title: string | null; paragraph1: string | null; paragraph2: string | null; buttonText: string | null; image: IImage | null };
-  promo: { title: string | null; text: string | null; buttonText: string | null; image: IImage | null };
-  // what Google and the social networks show, image is the picture shown when the site is shared
-  seo: { title: string | null; description: string | null; menuTitle: string | null; menuDescription: string | null; image: IImage | null };
+  /** the published pages in the order of the menu */
+  pages: IPage[];
 }

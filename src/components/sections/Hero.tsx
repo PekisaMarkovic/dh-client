@@ -2,13 +2,11 @@ import MainLink from "@/components/core/buttons/MainLink";
 import SiteImage from "@/components/core/SiteImage";
 import Heading from "@/components/core/typography/Heading";
 import Paragraph from "@/components/core/typography/Paragraph";
-import { ISite } from "@/interfaces";
+import { IHeroSection, ISite } from "@/interfaces";
 import { text } from "@/lib/site";
 
 // a big title in two colors over the background picture (a dark layer keeps the text readable), a warm glow when there is no picture
-const Hero = ({ site }: { site: ISite }) => {
-  const { hero } = site;
-
+const Hero = ({ section: hero, site }: { section: IHeroSection; site: ISite }) => {
   return (
     <section className="relative overflow-hidden bg-brand-dark">
       {hero.image ? (

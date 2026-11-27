@@ -1,7 +1,7 @@
 import MainLink from "@/components/core/buttons/MainLink";
 import SectionTitle from "@/components/core/typography/SectionTitle";
 import DrinksGrid from "@/components/drinks/DrinksGrid";
-import { ISite } from "@/interfaces";
+import { IFeaturedSection } from "@/interfaces";
 import { text } from "@/lib/site";
 
 /**
@@ -19,11 +19,9 @@ const WIDE_COLUMNS: Record<number, string> = {
 
 const teaserColumns = (count: number) => `grid-cols-1 ${count > 1 ? "sm:grid-cols-2" : ""} ${WIDE_COLUMNS[count] ?? "lg:grid-cols-5"}`;
 
-// the recommended drinks of the landing page (the admin picks them in the dashboard, the first drinks of the menu when none are picked).
-// When there are none (the api is down) the section is left out, the landing page must not break
-const DrinksTeaser = ({ site }: { site: ISite }) => {
-  const { featured } = site;
-
+// the recommended drinks (the admin picks them in the dashboard, the first drinks of the menu when none are picked).
+// When there are none (the api is down) the section is left out, the page must not break
+const DrinksTeaser = ({ section: featured }: { section: IFeaturedSection }) => {
   if (!featured.drinks.length) return null;
 
   return (

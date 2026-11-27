@@ -3,12 +3,10 @@ import BottleIcon from "@/icons/BottleIcon";
 import SiteImage from "@/components/core/SiteImage";
 import Paragraph from "@/components/core/typography/Paragraph";
 import SectionTitle from "@/components/core/typography/SectionTitle";
-import { ISite } from "@/interfaces";
+import { ISite, IStorySection } from "@/interfaces";
 import { mapsUrl, text } from "@/lib/site";
 
-const Story = ({ site }: { site: ISite }) => {
-  const { story } = site;
-
+const Story = ({ section: story, site }: { section: IStorySection; site: ISite }) => {
   return (
     <section id="directions" className="bg-background">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-20">

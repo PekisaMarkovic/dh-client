@@ -1,4 +1,4 @@
-import { ISite } from "@/interfaces";
+import { IPage, ISite } from "@/interfaces";
 
 /**
  * The content of the site when the api does not answer (it is down and nothing is cached yet). There is nothing of any company in the code:
@@ -14,11 +14,7 @@ export const fallbackSite: ISite = {
   instagram: null,
   workingHours: null,
   logo: null,
-  hero: { title: null, subtitle: null, text: null, buttonText: null, image: null },
-  featured: { title: null, buttonText: null, drinks: [] },
-  story: { title: null, paragraph1: null, paragraph2: null, buttonText: null, image: null },
-  promo: { title: null, text: null, buttonText: null, image: null },
-  seo: { title: null, description: null, menuTitle: null, menuDescription: null, image: null },
+  pages: [],
 };
 
 /**
@@ -37,3 +33,19 @@ export const phoneHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}
 
 /** A text from the database: trimmed, empty when there is none (the section then does not show it) */
 export const text = (value: string | null | undefined) => value?.trim() ?? "";
+
+/** The addresses of the home page and of the drinks menu, every site has both */
+export const HOME_SLUG = "";
+export const MENU_SLUG = "karta-pica";
+
+/** The published page with this address */
+export const findPage = (site: ISite, slug: string): IPage | undefined => site.pages.find((page) => page.slug === slug);
+
+export const pageHref = (page: IPage) => `/${page.slug}`;
+
+/** The pages in the menu of the header (all but the home page, the logo leads there); none while the site has only the home page and the menu */
+export const navPages = (site: ISite) => {
+  const pages = site.pages.filter((page) => page.slug !== HOME_SLUG);
+
+  return pages.some((page) => page.slug !== MENU_SLUG) ? pages : [];
+};

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { IDrink, IImage, ISite } from "@/interfaces";
-import { text } from "@/lib/site";
+import { findPage, HOME_SLUG, MENU_SLUG, text } from "@/lib/site";
 import { DEFAULT_LANGUAGE, OG_LOCALE } from "@/translations/config";
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:4350").replace(/\/+$/, "");
@@ -8,8 +8,14 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:43
 const ogImages = (image: IImage | null, fallbackAlt: string) =>
   image ? [{ url: image.url, width: image.width, height: image.height, alt: image.altText || fallbackAlt }] : undefined;
 
+/** The picture shown when a page is shared: its own, or the one of the home page */
+const shareImage = (site: ISite, slug: string) => findPage(site, slug)?.seo.image ?? findPage(site, HOME_SLUG)?.seo.image ?? null;
+
 /** The title, the description, the pictures and the canonical address of a page, for Google and for the social networks (Open Graph, Twitter) */
-export const pageMetadata = (site: ISite, page: { title: string; description?: string; path: string }): Metadata => ({
+export const pageMetadata = (site: ISite, page: { title: string; description?: string; path: string; slug?: string }): Metadata => {
+  const image = shareImage(site, page.slug ?? HOME_SLUG);
+
+  return {
   title: { absolute: page.title },
   description: page.description,
   alternates: { canonical: page.path },
@@ -20,27 +26,27 @@ export const pageMetadata = (site: ISite, page: { title: string; description?: s
     description: page.description,
     url: page.path,
     locale: OG_LOCALE[DEFAULT_LANGUAGE],
-    images: ogImages(site.seo.image, site.name),
+    images: ogImages(image, site.name),
   },
   twitter: {
-    card: site.seo.image ? "summary_large_image" : "summary",
+    card: image ? "summary_large_image" : "summary",
     title: page.title,
     description: page.description,
-    images: site.seo.image ? [site.seo.image.url] : undefined,
+    images: image ? [image.url] : undefined,
   },
-});
+  };
+};
 
-/** The title and the description of the home page, from the dashboard (tab SEO). The name of the site is the title until it is filled in */
-export const homeSeo = (site: ISite) => ({
-  title: text(site.seo.title) || site.name,
-  description: text(site.seo.description) || undefined,
-});
+/** The title and the description of a page, from the dashboard (tab SEO of the page). The name of the site is the title until it is filled in */
+export const pageSeo = (site: ISite, slug: string) => {
+  const seo = findPage(site, slug)?.seo;
 
-/** The title and the description of the menu page */
-export const menuSeo = (site: ISite) => ({
-  title: text(site.seo.menuTitle) || site.name,
-  description: text(site.seo.menuDescription) || undefined,
-});
+  return { title: text(seo?.title) || site.name, description: text(seo?.description) || undefined };
+};
+
+export const homeSeo = (site: ISite) => pageSeo(site, HOME_SLUG);
+
+export const menuSeo = (site: ISite) => pageSeo(site, MENU_SLUG);
 
 /** The icon of the browser tab: the logo of the site, a default icon until a logo is uploaded */
 export const siteIcons = (site: ISite): Metadata["icons"] =>
@@ -48,6 +54,9 @@ export const siteIcons = (site: ISite): Metadata["icons"] =>
 
 // a JSON-LD block is put in a <script>, so "<" must never end it
 export const jsonLdString = (data: object) => JSON.stringify(data).replace(/</g, "\\u003c");
+
+/** The picture of the first hero of the home page */
+const heroImage = (site: ISite) => findPage(site, HOME_SLUG)?.sections.find((section) => section.type === "hero")?.image;
 
 /** The local business (the store) for Google: name, address, phone, logo, pictures and the social page */
 export const localBusinessJsonLd = (site: ISite) => ({
@@ -60,7 +69,7 @@ export const localBusinessJsonLd = (site: ISite) => ({
   ...(site.phone ? { telephone: site.phone } : {}),
   address: { "@type": "PostalAddress", streetAddress: site.address ?? undefined, addressLocality: site.city ?? undefined, addressCountry: "RS" },
   ...(site.logo ? { logo: site.logo.url } : {}),
-  image: [site.seo.image?.url, site.hero.image?.url, site.logo?.url].filter(Boolean),
+  image: [shareImage(site, HOME_SLUG)?.url, heroImage(site)?.url, site.logo?.url].filter(Boolean),
   ...(site.instagram ? { sameAs: [site.instagram] } : {}),
 });
 
