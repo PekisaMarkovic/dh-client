@@ -2,16 +2,22 @@
 
 import { useTranslation } from "react-i18next";
 import MainButton from "@/components/core/buttons/MainButton";
+import MainLink from "@/components/core/buttons/MainLink";
 import Paragraph from "@/components/core/typography/Paragraph";
 import { useCookieConsent } from "@/hooks/use-cookie-consent";
 
+type Props = {
+  // the address of the privacy policy page, the link shows only when the site has that page
+  privacyHref?: string;
+};
+
 /**
- * Asks the visitor about the cookies of other sites (the Google map) until a choice is made.
+ * Tells the visitor about the cookies (the Google map) until "Ok" is clicked.
  * It floats over the bottom of the page (fixed), so it never moves the content when it appears.
  */
-const CookieBanner = () => {
+const CookieBanner = ({ privacyHref }: Props) => {
   const { t } = useTranslation("g");
-  const { isAsking, accept, reject } = useCookieConsent();
+  const { isAsking, accept } = useCookieConsent();
 
   if (!isAsking) return null;
 
@@ -20,8 +26,8 @@ const CookieBanner = () => {
       <div className="mx-auto flex max-w-3xl flex-col gap-4 rounded-xl border border-stone-700 bg-surface p-4 shadow-2xl sm:flex-row sm:items-center sm:p-5">
         <Paragraph text={t("cookies.text")} size="sm" className="flex-1" />
         <div className="flex shrink-0 gap-2">
-          <MainButton text={t("cookies.reject")} variant="alternative" size="medium" onClick={reject} />
           <MainButton text={t("cookies.accept")} variant="contained" size="medium" onClick={accept} />
+          {privacyHref && <MainLink text={t("cookies.privacy")} href={privacyHref} variant="contained" size="medium" />}
         </div>
       </div>
     </div>

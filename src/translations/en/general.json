@@ -45,9 +45,9 @@
   },
   "cookies": {
     "title": "Cookies",
-    "text": "We use cookies to make the site work better. You can accept or reject them.",
-    "accept": "Accept",
-    "reject": "Reject",
+    "text": "We use cookies to give you the best experience on our website. If you continue to use this site, we will assume that you are happy with it.",
+    "accept": "Ok",
+    "privacy": "Privacy policy",
     "settings": "Cookie settings",
     "showMap": "Show the map",
     "mapNote": "Google sets its cookies when the map loads.",

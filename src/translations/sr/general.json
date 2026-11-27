@@ -45,9 +45,9 @@
   },
   "cookies": {
     "title": "Kolačići",
-    "text": "Koristimo kolačiće kako bi sajt radio što bolje. Možete ih prihvatiti ili odbiti.",
-    "accept": "Prihvati",
-    "reject": "Odbij",
+    "text": "Koristimo kolačiće da bismo vam pružili najbolje iskustvo na našoj veb stranici. Ako nastavite da koristite ovaj sajt, pretpostavićemo da ste zadovoljni njime.",
+    "accept": "Ok",
+    "privacy": "Politika privatnosti",
     "settings": "Podešavanja kolačića",
     "showMap": "Prikaži mapu",
     "mapNote": "Učitavanjem mape Google postavlja svoje kolačiće.",

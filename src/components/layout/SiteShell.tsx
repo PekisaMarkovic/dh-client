@@ -4,7 +4,7 @@ import CookieBanner from "@/components/cookies/CookieBanner";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import Maintenance from "@/components/layout/Maintenance";
-import { isMaintenance } from "@/lib/site";
+import { PRIVACY_SLUG, findPage, isMaintenance, pageHref } from "@/lib/site";
 import CartProvider from "@/providers/CartProvider";
 import { getSiteOrFallback } from "@/services/site-service";
 
@@ -18,6 +18,8 @@ const SiteShell = async ({ children }: PropsWithChildren) => {
 
   if (isMaintenance(site)) return <Maintenance />;
 
+  const privacyPage = findPage(site, PRIVACY_SLUG);
+
   return (
     // the cart is on every page, it shows only when the site lets the visitors order
     <CartProvider isEnabled={site.isOrderingAllowed}>
@@ -25,7 +27,7 @@ const SiteShell = async ({ children }: PropsWithChildren) => {
       <main className="flex-1">{children}</main>
       <Footer site={site} />
       <CartDrawer />
-      <CookieBanner />
+      <CookieBanner privacyHref={privacyPage && pageHref(privacyPage)} />
     </CartProvider>
   );
 };

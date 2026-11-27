@@ -39,6 +39,9 @@ export const text = (value: string | null | undefined) => value?.trim() ?? "";
 export const HOME_SLUG = "";
 export const MENU_SLUG = "karta-pica";
 
+/** The privacy policy page, linked from the cookie banner when the site has it */
+export const PRIVACY_SLUG = "politika-privatnosti";
+
 /** The published page with this address */
 export const findPage = (site: ISite, slug: string): IPage | undefined => site.pages.find((page) => page.slug === slug);
 
