@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Geist, Geist_Mono } from "next/font/google";
 import RuntimeMarker from "@/components/layout/RuntimeMarker";
 import SiteShell from "@/components/layout/SiteShell";
@@ -28,6 +28,13 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+// maximumScale stops iOS auto-zoom on input focus; iOS still allows pinch-zoom.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 // Everything Google and the social networks read comes from the database (the dashboard, tab SEO), the translations are only the fallback.
 // A draft site is hidden from Google until it is published.
