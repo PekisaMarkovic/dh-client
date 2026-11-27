@@ -7,34 +7,34 @@ import { useCart } from "@/hooks/use-cart";
 
 type Props = {
   drink: IDrink;
-  // overlay: over the image, it comes on hover; corner: the round button next to the price, always visible
-  variant: "overlay" | "corner";
+  // corner: the round button next to the price on the card; full: the wide button in the detail of the drink
+  variant: "corner" | "full";
+  // after the drink is in the cart (the detail closes itself)
+  onAdded?: () => void;
 };
 
 /** Puts the drink in the cart and opens the cart; nothing when the site does not let the visitors order */
-const AddToCartButton = ({ drink, variant }: Props) => {
+const AddToCartButton = ({ drink, variant, onAdded }: Props) => {
   const { t } = useTranslation("cart");
   const { isEnabled, add } = useCart();
 
   if (!isEnabled) return null;
 
-  const onClick = () => add({ drinkId: drink.drinkId, name: drink.name, price: drink.price, imageUrl: drink.image?.url ?? null });
+  const onClick = () => {
+    add({ drinkId: drink.drinkId, name: drink.name, price: drink.price, imageUrl: drink.image?.url ?? null });
+    onAdded?.();
+  };
   const label = t("add", { name: drink.name });
 
-  if (variant === "overlay") {
+  if (variant === "full") {
     return (
-      // the same action as the corner button, so it is skipped by the keyboard and the screen readers
       <button
         type="button"
-        tabIndex={-1}
-        aria-hidden="true"
         onClick={onClick}
-        className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-2 bg-brand-dark/60 opacity-0 transition duration-200 group-hover:opacity-100"
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-brand-dark transition hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
-        <span className="flex h-14 w-14 scale-75 items-center justify-center rounded-full bg-brand text-brand-dark shadow-lg transition duration-200 group-hover:scale-100 motion-reduce:scale-100">
-          <CartIcon className="h-7 w-7" />
-        </span>
-        <span className="text-sm font-semibold text-white">{t("addShort")}</span>
+        <CartIcon className="h-5 w-5" />
+        {t("addShort")}
       </button>
     );
   }

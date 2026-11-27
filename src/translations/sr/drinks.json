@@ -20,5 +20,7 @@
   "resultsFor_few": "{{count}} pića za „{{search}}“",
   "resultsFor_other": "{{count}} pića za „{{search}}“",
   "noResults": "Nema pića za „{{search}}“.",
-  "clearSearch": "Obriši pretragu"
+  "clearSearch": "Obriši pretragu",
+  "details": "Detalji pića {{name}}",
+  "close": "Zatvori"
 }

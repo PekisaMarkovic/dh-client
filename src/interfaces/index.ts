@@ -9,6 +9,8 @@ export interface IImage {
 export interface IDrink {
   drinkId: number;
   name: string;
+  /** a short description (at most 150 characters), shown in the detail of the drink */
+  description: string | null;
   price: number;
   inStock: boolean;
   image: IImage | null;
