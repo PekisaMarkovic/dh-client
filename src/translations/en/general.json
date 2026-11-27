@@ -7,7 +7,8 @@
     "main": "Main navigation",
     "home": "Home",
     "openMenu": "Open the menu",
-    "closeMenu": "Close the menu"
+    "closeMenu": "Close the menu",
+    "menuTitle": "Menu"
   },
   "button": {
     "submit": "Send",
