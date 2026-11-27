@@ -2,7 +2,8 @@ import InstagramIcon from "@/icons/InstagramIcon";
 import PhoneIcon from "@/icons/PhoneIcon";
 import PinIcon from "@/icons/PinIcon";
 import { ISite } from "@/interfaces";
-import { fullAddress, mapsUrl, phoneHref, text } from "@/lib/site";
+import Link from "next/link";
+import { footerPages, fullAddress, mapsUrl, pageHref, phoneHref, text } from "@/lib/site";
 import { t } from "@/translations/translate";
 
 const Footer = ({ site }: { site: ISite }) => (
@@ -42,6 +43,15 @@ const Footer = ({ site }: { site: ISite }) => (
         <p className="whitespace-pre-line text-stone-300">{text(site.workingHours)}</p>
       </div>
     </div>
+    {footerPages(site).length > 0 && (
+      <nav aria-label={t("g:footer.pages")} className="flex flex-wrap justify-center gap-x-6 gap-y-2 border-t border-white/10 px-4 py-4">
+        {footerPages(site).map((page) => (
+          <Link key={page.slug} href={pageHref(page)} className="text-sm text-stone-300 hover:text-brand">
+            {page.title}
+          </Link>
+        ))}
+      </nav>
+    )}
     <p className="border-t border-white/10 py-4 text-center text-xs text-stone-500">© 2026 {site.name}</p>
   </footer>
 );

@@ -43,7 +43,7 @@ export interface ICategory {
 type Text = string | null;
 
 /** The kinds of sections a page can have, the site has one component per kind */
-export type SectionType = "hero" | "featured" | "story" | "info";
+export type SectionType = "hero" | "featured" | "story" | "info" | "text";
 
 // every section of a page, a text that is null is not filled in (the section leaves it out)
 export interface IHeroSection {
@@ -84,12 +84,21 @@ export interface IInfoSection {
   image: IImage | null;
 }
 
-export type ISection = IHeroSection | IFeaturedSection | IStorySection | IInfoSection;
+/** free text from the rich text editor of the dashboard (e.g. the page "O nama"): HTML the api already sanitized */
+export interface ITextSection {
+  sectionId: number;
+  type: "text";
+  html: Text;
+}
+
+export type ISection = IHeroSection | IFeaturedSection | IStorySection | IInfoSection | ITextSection;
 
 /** A published page: its address ("" is the home page), what Google shows and its sections in order */
 export interface IPage {
   title: string;
   slug: string;
+  /** in the main menu of the header (at most 5), else in the footer */
+  isInMenu: boolean;
   // image is the picture shown when the page is shared
   seo: { title: Text; description: Text; image: IImage | null };
   sections: ISection[];

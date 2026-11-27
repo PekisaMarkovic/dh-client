@@ -43,9 +43,8 @@ export const findPage = (site: ISite, slug: string): IPage | undefined => site.p
 
 export const pageHref = (page: IPage) => `/${page.slug}`;
 
-/** The pages in the menu of the header (all but the home page, the logo leads there); none while the site has only the home page and the menu */
-export const navPages = (site: ISite) => {
-  const pages = site.pages.filter((page) => page.slug !== HOME_SLUG);
+/** The pages in the main menu of the header (the admin picks them, the home page never: the logo leads there) */
+export const navPages = (site: ISite) => site.pages.filter((page) => page.isInMenu && page.slug !== HOME_SLUG);
 
-  return pages.some((page) => page.slug !== MENU_SLUG) ? pages : [];
-};
+/** The other published pages, they are in the footer (e.g. the terms of use) */
+export const footerPages = (site: ISite) => site.pages.filter((page) => !page.isInMenu && page.slug !== HOME_SLUG);

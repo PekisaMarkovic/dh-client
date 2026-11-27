@@ -6,7 +6,8 @@ import { IHeroSection, ISite } from "@/interfaces";
 import { text } from "@/lib/site";
 
 // a big title in two colors over the background picture (a dark layer keeps the text readable), a warm glow when there is no picture
-const Hero = ({ section: hero, site }: { section: IHeroSection; site: ISite }) => {
+// isMain: the first hero of the page, its title is the h1 of the page (another hero gets an h2)
+const Hero = ({ section: hero, site, isMain = true }: { section: IHeroSection; site: ISite; isMain?: boolean }) => {
   return (
     <section className="relative overflow-hidden bg-brand-dark">
       {hero.image ? (
@@ -19,7 +20,7 @@ const Hero = ({ section: hero, site }: { section: IHeroSection; site: ISite }) =
       )}
       <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-24 text-center sm:py-36">
         {text(hero.title) && (
-          <Heading as="h1" size="6xl" color="brand" align="center" text={text(hero.title)} className="[text-shadow:3px_3px_0_rgba(194,65,12,0.6)]" />
+          <Heading as={isMain ? "h1" : "h2"} size="6xl" color="brand" align="center" text={text(hero.title)} className="[text-shadow:3px_3px_0_rgba(194,65,12,0.6)]" />
         )}
         {text(hero.subtitle) && (
           <p className="font-display text-4xl text-accent [text-shadow:3px_3px_0_rgba(0,0,0,0.5)] sm:text-7xl">{text(hero.subtitle)}</p>

@@ -31,7 +31,8 @@
   "footer": {
     "address": "Adresa",
     "contact": "Kontakt",
-    "hours": "Radno vreme"
+    "hours": "Radno vreme",
+    "pages": "Ostale stranice"
   },
   "notFound": {
     "title": "Stranica nije pronađena",

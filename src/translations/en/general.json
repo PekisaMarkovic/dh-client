@@ -31,7 +31,8 @@
   "footer": {
     "address": "Address",
     "contact": "Contact",
-    "hours": "Opening hours"
+    "hours": "Opening hours",
+    "pages": "Other pages"
   },
   "notFound": {
     "title": "Page not found",

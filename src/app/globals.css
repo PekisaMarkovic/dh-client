@@ -126,3 +126,63 @@ body {
   border-radius: 9999px;
   background: rgb(245 158 11 / 0.6);
 }
+
+/* the HTML of a text section (the rich text editor of the dashboard): headings, paragraphs, lists, quotes and links on the dark site */
+.rich-text {
+  color: #d6d3d1; /* stone-300, as the paragraphs of the site */
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.rich-text > * + * {
+  margin-top: 1rem;
+}
+
+.rich-text :is(h2, h3, h4) {
+  margin-top: 2rem;
+  color: #fff;
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+.rich-text h2 {
+  font-size: 2rem;
+}
+
+.rich-text h3 {
+  font-size: 1.5rem;
+}
+
+.rich-text h4 {
+  font-size: 1.25rem;
+}
+
+.rich-text :is(strong, b) {
+  color: #fff;
+  font-weight: 700;
+}
+
+.rich-text a {
+  color: #f59e0b; /* brand */
+  text-decoration: underline;
+}
+
+.rich-text ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.rich-text ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+.rich-text blockquote {
+  border-left: 3px solid #f59e0b;
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.rich-text hr {
+  border-color: rgb(255 255 255 / 0.1);
+}
