@@ -1,9 +1,8 @@
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import DrinkDetails from "@/components/drinks/DrinkDetails";
 import DrinkImage from "@/components/drinks/DrinkImage";
+import DrinkPrice from "@/components/drinks/DrinkPrice";
 import { IDrink } from "@/interfaces";
-import { t } from "@/translations/translate";
-import { formatPrice } from "@/utils/money";
 
 type Props = {
   drink: IDrink;
@@ -25,12 +24,7 @@ const DrinkCard = ({ drink, priority, sizes }: Props) => (
     <div className="flex flex-1 flex-col gap-1 p-4">
       <h3 className="font-semibold leading-snug">{drink.name}</h3>
       <div className="mt-auto flex items-end justify-between gap-2 pt-2">
-        <div>
-          <p className="text-lg font-bold text-brand">{t("drinks:price", { price: formatPrice(drink.price) })}</p>
-          <p className={`text-xs ${drink.inStock ? "text-green-400" : "text-stone-500"}`}>
-            {drink.inStock ? t("drinks:inStock") : t("drinks:outOfStock")}
-          </p>
-        </div>
+        <DrinkPrice price={drink.price} inStock={drink.inStock} />
         {/* always visible, also on a phone that has no hover */}
         <div className="relative z-10">
           <AddToCartButton drink={drink} variant="corner" />

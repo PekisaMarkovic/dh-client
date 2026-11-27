@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import MainButton from "@/components/core/buttons/MainButton";
 import CartIcon from "@/icons/CartIcon";
 import { IDrink } from "@/interfaces";
 import { useCart } from "@/hooks/use-cart";
@@ -27,16 +28,7 @@ const AddToCartButton = ({ drink, variant, onAdded }: Props) => {
   const label = t("add", { name: drink.name });
 
   if (variant === "full") {
-    return (
-      <button
-        type="button"
-        onClick={onClick}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-brand-dark transition hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-      >
-        <CartIcon className="h-5 w-5" />
-        {t("addShort")}
-      </button>
-    );
+    return <MainButton text={t("addShort")} variant="contained" size="full" leftIcon={<CartIcon className="h-5 w-5" />} onClick={onClick} />;
   }
 
   return (

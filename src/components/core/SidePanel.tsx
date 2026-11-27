@@ -1,5 +1,6 @@
 "use client";
 
+import CloseButton from "@/components/core/buttons/CloseButton";
 import { PropsWithChildren, ReactNode, useEffect, useId, useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
@@ -77,9 +78,7 @@ const SidePanel = ({ isOpen, onClose, side, title, label, closeLabel, children }
       >
         <div className="flex items-center justify-between gap-4">
           <div id={titleId}>{title}</div>
-          <button type="button" onClick={onClose} aria-label={closeLabel} className="text-2xl text-stone-400 transition hover:text-brand">
-            ✕
-          </button>
+          <CloseButton label={closeLabel} onClick={onClose} />
         </div>
 
         {children}

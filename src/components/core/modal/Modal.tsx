@@ -2,12 +2,15 @@
 
 import { PropsWithChildren } from "react";
 import ReactModal from "react-modal";
+import CloseButton from "@/components/core/buttons/CloseButton";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
   // for screen readers
   title: string;
+  // set: the × in the top right corner, with this label for screen readers
+  closeLabel?: string;
 };
 
 // the id of the element that holds the whole page (set in the root layout), the rest of the page is hidden from screen readers while a modal is open
@@ -32,7 +35,7 @@ const styles: ReactModal.Styles = {
   overlay: { backgroundColor: "rgba(0, 0, 0, 0.6)", zIndex: 999 },
 };
 
-const Modal = ({ isOpen, onClose, title, children }: PropsWithChildren<Props>) => (
+const Modal = ({ isOpen, onClose, title, closeLabel, children }: PropsWithChildren<Props>) => (
   <ReactModal
     isOpen={isOpen}
     onRequestClose={onClose}
@@ -40,6 +43,11 @@ const Modal = ({ isOpen, onClose, title, children }: PropsWithChildren<Props>) =
     style={styles}
     appElement={typeof document !== "undefined" ? (document.getElementById(APP_ROOT_ID) ?? undefined) : undefined}
   >
+    {closeLabel && (
+      <div className="flex justify-end">
+        <CloseButton label={closeLabel} onClick={onClose} />
+      </div>
+    )}
     {children}
   </ReactModal>
 );
