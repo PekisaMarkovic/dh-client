@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import CartStep from "@/components/cart/CartStep";
 
 type Props = {
   step: 1 | 2;
@@ -13,25 +14,9 @@ const CartSteps = ({ step }: Props) => {
 
   return (
     <ol className="flex items-center gap-3 text-sm">
-      {steps.map((label, index) => {
-        const number = index + 1;
-        const isActive = number === step;
-        const isDone = number < step;
-
-        return (
-          <li key={label} aria-current={isActive ? "step" : undefined} className="flex items-center gap-2">
-            {index > 0 && <span aria-hidden="true" className="h-px w-6 bg-stone-700" />}
-            <span
-              className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
-                isActive || isDone ? "bg-brand text-brand-dark" : "border border-stone-600 text-stone-400"
-              }`}
-            >
-              {number}
-            </span>
-            <span className={isActive ? "font-semibold text-foreground" : "text-stone-400"}>{label}</span>
-          </li>
-        );
-      })}
+      {steps.map((label, index) => (
+        <CartStep key={label} number={index + 1} label={label} isActive={index + 1 === step} isDone={index + 1 < step} hasPrevious={index > 0} />
+      ))}
     </ol>
   );
 };

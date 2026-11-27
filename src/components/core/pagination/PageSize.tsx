@@ -1,4 +1,4 @@
-import Link from "next/link";
+import PageSizeLink from "@/components/core/pagination/PageSizeLink";
 
 type Props = {
   label: string;
@@ -18,17 +18,7 @@ const PageSize = ({ label, value, options, buildHref }: Props) => (
     <span className="text-sm text-stone-400">{label}</span>
     <ul className="flex flex-wrap items-center gap-2">
       {options.map((size) => (
-        <li key={size}>
-          {/* nofollow: the same drinks in another page size are not new pages for Google */}
-          <Link
-            href={buildHref(size)}
-            rel="nofollow"
-            aria-current={size === value ? "true" : undefined}
-            className={`${ITEM} ${size === value ? ACTIVE : IDLE}`}
-          >
-            {size}
-          </Link>
-        </li>
+        <PageSizeLink key={size} size={size} href={buildHref(size)} isCurrent={size === value} className={`${ITEM} ${size === value ? ACTIVE : IDLE}`} />
       ))}
     </ul>
   </nav>
