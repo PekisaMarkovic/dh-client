@@ -48,9 +48,15 @@ export const homeSeo = (site: ISite) => pageSeo(site, HOME_SLUG);
 
 export const menuSeo = (site: ISite) => pageSeo(site, MENU_SLUG);
 
-/** The icon of the browser tab: the logo of the site, a default icon until a logo is uploaded */
-export const siteIcons = (site: ISite): Metadata["icons"] =>
-  site.logo ? { icon: [{ url: site.logo.url, type: "image/webp" }], shortcut: [site.logo.url], apple: [site.logo.url] } : { icon: "/favicon.ico" };
+/** The icon of the browser tab and of Google results: the logo made square (/site-icon), a default icon until a logo is uploaded */
+export const siteIcons = (site: ISite): Metadata["icons"] => {
+  if (!site.logo) return { icon: "/favicon.ico" };
+
+  // a new logo is a new address, so browsers and Google load it again
+  const url = `/site-icon?v=${encodeURIComponent(site.logo.url.split("/").pop() ?? "")}`;
+
+  return { icon: [{ url, type: "image/png", sizes: "192x192" }], shortcut: [url], apple: [url] };
+};
 
 // a JSON-LD block is put in a <script>, so "<" must never end it
 export const jsonLdString = (data: object) => JSON.stringify(data).replace(/</g, "\\u003c");
