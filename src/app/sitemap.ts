@@ -1,10 +1,14 @@
 import type { MetadataRoute } from "next";
+import { connection } from "next/server";
 import { HOME_SLUG, isMaintenance, MENU_SLUG } from "@/lib/site";
 import { siteUrl } from "@/lib/seo";
 import { getCategories, getDrinks } from "@/services/drink-service";
 import { getSiteOrFallback } from "@/services/site-service";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // built on request, not at build time: else it keeps the pages of the build (a page made later is never in it)
+  await connection();
+
   // nothing to index while the site is a draft
   const site = await getSiteOrFallback();
 
