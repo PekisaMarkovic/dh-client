@@ -12,7 +12,16 @@ type Props = {
 
 // a picture from the database that fills its parent (the parent sets the shape: aspect-ratio and `relative`), it is cropped, not stretched
 const SiteImage = ({ image, fallbackAlt, sizes, priority, className = "" }: Props) => (
-  <Image src={image.url} alt={image.altText || fallbackAlt} fill sizes={sizes} priority={priority} className={`object-cover ${className}`} />
+  // fetchPriority also goes on the preload link, Lighthouse asks for it on the LCP image (the hero)
+  <Image
+    src={image.url}
+    alt={image.altText || fallbackAlt}
+    fill
+    sizes={sizes}
+    priority={priority}
+    fetchPriority={priority ? "high" : undefined}
+    className={`object-cover ${className}`}
+  />
 );
 
 export default SiteImage;
