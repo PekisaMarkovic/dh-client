@@ -2,6 +2,7 @@ import { ComponentType } from "react";
 import Heading from "@/components/core/typography/Heading";
 import DrinksTeaser from "@/components/sections/DrinksTeaser";
 import Hero from "@/components/sections/Hero";
+import ContactSection from "@/components/sections/ContactSection";
 import Info from "@/components/sections/Info";
 import Story from "@/components/sections/Story";
 import TextSection from "@/components/sections/TextSection";
@@ -15,6 +16,7 @@ const SECTIONS: { [Type in SectionType]: ComponentType<{ section: Extract<ISecti
   story: Story,
   info: Info,
   text: TextSection,
+  contact: ContactSection,
 };
 
 /**

@@ -1,5 +1,4 @@
-import Contact from "@/components/home/Contact";
-import ContactForm from "@/components/home/ContactForm";
+import ContactSection from "@/components/sections/ContactSection";
 import PageSections from "@/components/sections/PageSections";
 import { findPage, HOME_SLUG } from "@/lib/site";
 import { jsonLdString, localBusinessJsonLd } from "@/lib/seo";
@@ -14,13 +13,8 @@ const Home = async () => {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(localBusinessJsonLd(site)) }} />
       {home && <PageSections page={home} site={site} />}
-      {/* the contact (with the map) on the left, the contact form on the right */}
-      <section id="contact" className="bg-background">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2">
-          <Contact site={site} />
-          <ContactForm />
-        </div>
-      </section>
+      {/* the home page always ends with the contact, unless the admin already put it in its sections */}
+      {!home?.sections.some((section) => section.type === "contact") && <ContactSection site={site} />}
     </>
   );
 };

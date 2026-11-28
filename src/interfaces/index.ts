@@ -45,7 +45,7 @@ export interface ICategory {
 type Text = string | null;
 
 /** The kinds of sections a page can have, the site has one component per kind */
-export type SectionType = "hero" | "featured" | "story" | "info" | "text";
+export type SectionType = "hero" | "featured" | "story" | "info" | "text" | "contact";
 
 // every section of a page, a text that is null is not filled in (the section leaves it out)
 export interface IHeroSection {
@@ -93,7 +93,13 @@ export interface ITextSection {
   html: Text;
 }
 
-export type ISection = IHeroSection | IFeaturedSection | IStorySection | IInfoSection | ITextSection;
+/** the contact (phone, social, map) and the contact form: everything comes from the site itself */
+export interface IContactSection {
+  sectionId: number;
+  type: "contact";
+}
+
+export type ISection = IHeroSection | IFeaturedSection | IStorySection | IInfoSection | ITextSection | IContactSection;
 
 /** A published page: its address ("" is the home page), what Google shows and its sections in order */
 export interface IPage {
