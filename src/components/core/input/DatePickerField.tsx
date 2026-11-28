@@ -5,10 +5,8 @@ import { DayPicker } from "react-day-picker";
 import { srLatn } from "react-day-picker/locale";
 import "react-day-picker/style.css";
 import { Controller, useFormContext } from "react-hook-form";
-import { inputStyle } from "@/components/core/input/style";
+import DateFieldButton from "@/components/core/input/DateFieldButton";
 import ErrorMessage from "@/components/core/typography/ErrorMessage";
-import Label from "@/components/core/typography/Label";
-import CalendarIcon from "@/icons/CalendarIcon";
 
 type Props = {
   // the value of the form is a day as "2026-11-27"
@@ -51,17 +49,15 @@ const DatePickerField = ({ name, label, isRequired, min, max }: Props) => {
 
         return (
           <div className="flex flex-col gap-1">
-            <Label htmlFor={name} label={label} isRequired={isRequired} />
-            <button
+            <DateFieldButton
               id={name}
-              type="button"
+              label={label}
+              isRequired={isRequired}
+              text={selected ? toText(selected) : null}
+              hasError={!!error}
+              isOpen={isOpen}
               onClick={() => setIsOpen((open) => !open)}
-              aria-expanded={isOpen}
-              className={`${inputStyle({ error: !!error })} flex h-11 items-center justify-between gap-2 text-left`}
-            >
-              <span className={selected ? "" : "text-stone-400"}>{selected ? toText(selected) : label}</span>
-              <CalendarIcon className="h-5 w-5 shrink-0 text-stone-500" />
-            </button>
+            />
 
             {isOpen && (
               <div className="mt-1 flex justify-center rounded-xl border border-stone-700 bg-brand-dark p-2 [container-type:inline-size]">

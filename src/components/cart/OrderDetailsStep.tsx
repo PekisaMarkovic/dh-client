@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import MainButton from "@/components/core/buttons/MainButton";
+import DateFieldButton from "@/components/core/input/DateFieldButton";
 import InputText from "@/components/core/input/InputText";
 import Paragraph from "@/components/core/typography/Paragraph";
 import { useCart } from "@/hooks/use-cart";
@@ -14,10 +15,20 @@ import { pickupDateRange } from "@/lib/pickup-date";
 import { sendOrder } from "@/services/order-service";
 import { ORDER_DETAILS_VALIDATION, OrderDetailsValues } from "@/validations/order";
 
-// the calendar is a big library: it is loaded only on this step, an empty field of the same size holds its place meanwhile
-const DatePickerField = dynamic(() => import("@/components/core/input/DatePickerField"), {
-  loading: () => <div aria-hidden="true" className="h-[68px] animate-pulse rounded-md bg-stone-800/40" />,
-});
+// while the calendar loads: the same closed field with the day the form starts with, the visitor sees no difference
+const DatePickerPlaceholder = () => {
+  const { t } = useTranslation("cart");
+  const [year, month, day] = pickupDateRange().first.split("-").map(Number);
+
+  return (
+    <div className="flex flex-col gap-1">
+      <DateFieldButton id="pickupDate" label={t("cart:pickupDate")} isRequired text={`${day}.${month}.${year}`} />
+    </div>
+  );
+};
+
+// the calendar is a big library: it is loaded only on this step
+const DatePickerField = dynamic(() => import("@/components/core/input/DatePickerField"), { loading: DatePickerPlaceholder });
 
 type Props = {
   onBack: () => void;
