@@ -1,16 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import CartItemsStep from "@/components/cart/CartItemsStep";
 import CartSteps from "@/components/cart/CartSteps";
+import OrderDetailsStep from "@/components/cart/OrderDetailsStep";
 import OrderSentStep from "@/components/cart/OrderSentStep";
 import SidePanel from "@/components/core/SidePanel";
 import { useCart } from "@/hooks/use-cart";
-
-// step 2 has the date picker (a big library): it is loaded only when the visitor gets there
-const OrderDetailsStep = dynamic(() => import("@/components/cart/OrderDetailsStep"));
 
 type Step = "cart" | "details" | "sent";
 
